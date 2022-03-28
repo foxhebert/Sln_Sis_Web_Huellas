@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Dominio.Entidades" />
+  <xs:import schemaLocation="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Dominio.Entidades.Personalizado" />
+  <xs:element name="InsertarUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_dedosAntes" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_usuario" nillable="true" type="q1:ZKUsuarios" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertarUsuarioResult" type="xs:boolean" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_usuario" nillable="true" type="q2:ZKUsuarios" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="x_idSesion" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EliminarUsuarioResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarEstadoUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="x_estado" type="xs:int" />
+        <xs:element minOccurs="0" name="x_idSesion" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_usuario" nillable="true" type="q3:ZKUsuarios" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarEstadoUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CambiarEstadoUsuarioResult" type="xs:boolean" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_usuario" nillable="true" type="q4:ZKUsuarios" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuarioByCod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_iCodUsuario" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuarioByCodResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarUsuarioByCodResult" nillable="true" type="q5:ZKUsuarios" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuarioByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_iIdUsuario" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuarioByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarUsuarioByIDResult" nillable="true" type="q6:ZKUsuarios" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonalExport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_strCodUnico" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_idSede" type="xs:int" />
+        <xs:element minOccurs="0" name="x_pagina" type="xs:int" />
+        <xs:element minOccurs="0" name="x_numReg" type="xs:int" />
+        <xs:element minOccurs="0" name="x_intTotalReg" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonalExportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarPersonalExportResult" nillable="true" type="q7:ListItemPersonaExport" />
+        <xs:element minOccurs="0" name="x_intTotalReg" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonalInactivoExport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_strCodUnico" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_idSede" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonalInactivoExportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ListarPersonalInactivoExportResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasExport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_strCodUnico" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_idSede" type="xs:int" />
+        <xs:element minOccurs="0" name="x_pagina" type="xs:int" />
+        <xs:element minOccurs="0" name="x_numReg" type="xs:int" />
+        <xs:element minOccurs="0" name="x_intTotalReg" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasExportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarHuellasExportResult" nillable="true" type="q8:ListItemHuellaExport" />
+        <xs:element minOccurs="0" name="x_intTotalReg" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarMarcasImport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_lst" nillable="true" type="q9:ListItemMarcaImport" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarMarcasImportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertarMarcasImportResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizaFechaSincro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_codUnico" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizaFechaSincroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtieneConfigValores">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_tiempoSincro" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtieneConfigValoresResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObtieneConfigValoresResult" type="xs:int" />
+        <xs:element minOccurs="0" name="x_tiempoSincro" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertMasivo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_lst" nillable="true" type="q10:ListItemPersonaImport" />
+        <xs:element minOccurs="0" name="x_intInsertados" type="xs:int" />
+        <xs:element minOccurs="0" name="x_intErrores" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertMasivoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="InsertMasivoResult" nillable="true" type="q11:ListItemErrorCarga" />
+        <xs:element minOccurs="0" name="x_intInsertados" type="xs:int" />
+        <xs:element minOccurs="0" name="x_intErrores" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasAlg10Usuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_iIdUsuario" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasAlg10UsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarHuellasAlg10UsuarioResult" nillable="true" type="q12:ArrayOfZKHuellas" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasAlg10Todo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_pagina" type="xs:int" />
+        <xs:element minOccurs="0" name="x_tamanio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasAlg10TodoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarHuellasAlg10TodoResult" nillable="true" type="q13:ArrayOfZKHuellas" />
+        <xs:element minOccurs="0" name="x_totalregistros" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasAlg10UsuarioCadena">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_iIdUsuario" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarHuellasAlg10UsuarioCadenaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ListarHuellasAlg10UsuarioCadenaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarHuella">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_iIdUsuario" type="xs:int" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_lstHuellas" nillable="true" type="q14:ArrayOfZKHuellas" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarHuellaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertarHuellaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarHuella">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_iIdHuella" type="xs:int" />
+        <xs:element minOccurs="0" name="x_iIdUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="x_iFingerNumber" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarHuellaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EliminarHuellaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IdentificarHuella">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_template" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IdentificarHuellaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="IdentificarHuellaResult" nillable="true" type="q15:ZKUsuarios" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuariosTodo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idSede" type="xs:int" />
+        <xs:element minOccurs="0" name="x_estadoActivo" type="xs:int" />
+        <xs:element minOccurs="0" name="x_pagina" type="xs:int" />
+        <xs:element minOccurs="0" name="x_tamanio" type="xs:int" />
+        <xs:element minOccurs="0" name="x_total" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuariosTodoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarUsuariosTodoResult" nillable="true" type="q16:ArrayOfZKUsuarios" />
+        <xs:element minOccurs="0" name="x_total" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarMenuUsuarioCombo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idSesion" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarMenuUsuarioComboResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarMenuUsuarioComboResult" nillable="true" type="q17:ArrayOfItemCombo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarMarcaciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_feIni" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="x_feFin" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="x_criterio" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_filtro" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_estado" type="xs:int" />
+        <xs:element minOccurs="0" name="x_intIdSede" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarMarcacionesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Dominio.Entidades.Personalizado" minOccurs="0" name="ListarMarcacionesResult" nillable="true" type="q18:ListItemAsistencia" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarMarca">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_strHuella" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_sSerie" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_intIdSede" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarMarcaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegistrarMarcaResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarMarca_">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_strHuella" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_sSerie" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_intIdSede" type="xs:int" />
+        <xs:element minOccurs="0" name="feHor" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarMarca_Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegistrarMarca_Result" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarMarcaWinService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_strHuella" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_sSerie" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_intIdSede" type="xs:int" />
+        <xs:element minOccurs="0" name="x_numDedo" type="xs:int" />
+        <xs:element minOccurs="0" name="x_result" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarMarcaWinServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="RegistrarMarcaWinServiceResult" nillable="true" type="q19:ZKUsuarios" />
+        <xs:element minOccurs="0" name="x_numDedo" type="xs:int" />
+        <xs:element minOccurs="0" name="x_result" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Version">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VersionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VersionResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCC">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCCResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWs">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetWsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWslc">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWslcResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetWslcResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLoginByCod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_NombreSesion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLoginByCodResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarLoginByCodResult" nillable="true" type="q20:ZKLoginOff" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLogin">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarLoginResult" nillable="true" type="q21:ListZKLogin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsers_">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsers_Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarUsers_Result" nillable="true" type="q22:ListZKLoginOff" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarMenuUsers_">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarMenuUsers_Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarMenuUsers_Result" nillable="true" type="q23:ListZKMenuOff" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLoginID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idSesion" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLoginIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarLoginIDResult" nillable="true" type="q24:ZKLogin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_login" nillable="true" type="q25:ZKLogin" />
+        <xs:element minOccurs="0" name="x_menus" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertarLoginResult" type="xs:boolean" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_login" nillable="true" type="q26:ZKLogin" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idSesion" type="xs:int" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EliminarLoginResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarSede">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idSesion" type="xs:int" />
+        <xs:element minOccurs="0" name="x_idSede" type="xs:int" />
+        <xs:element minOccurs="0" name="x_menus" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarSedeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CambiarSedeResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarContraseña">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_idSesion" type="xs:int" />
+        <xs:element minOccurs="0" name="x_sPasswordSesion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarContraseñaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CambiarContraseñaResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarSedeCombo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarSedeComboResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarSedeComboResult" nillable="true" type="q27:ArrayOfItemCombo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarSedes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x_intEstadoActivo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarSedesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="ListarSedesResult" nillable="true" type="q28:ListZKSede" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MantenimientoSede">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_sede" nillable="true" type="q29:ZKSede" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MantenimientoSedeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MantenimientoSedeResult" type="xs:boolean" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Dominio.Entidades" minOccurs="0" name="x_sede" nillable="true" type="q30:ZKSede" />
+        <xs:element minOccurs="0" name="x_mensaje" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

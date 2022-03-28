@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Dominio.Entidades.ZKLoginOff>
+
+@{
+    ViewBag.Title = "ListarLogin";
+}
+
+<h2>ListarLogin</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.iIdSesion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sNombreSesion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sPasswordSesion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bitFlSist)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.iPermiso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.iRestaurado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sPermisoMenu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intIdSede)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dttFecReg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intEsAdmin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bitFlActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strSede)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.iIdSesion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sNombreSesion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sPasswordSesion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bitFlSist)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.iPermiso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.iRestaurado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sPermisoMenu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intIdSede)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dttFecReg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intEsAdmin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bitFlActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strSede)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

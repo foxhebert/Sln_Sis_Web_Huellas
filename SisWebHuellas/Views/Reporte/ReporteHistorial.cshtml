@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Dominio.Entidades.HistorialTicket>
+@using Dominio.Entidades
+@{
+    ViewBag.Title = "ReporteHistorial";
+}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                @Html.DropDownList("cboAreaFilter", (SelectList)ViewBag.AREA, "Filtrar por Area...", new { @class = "form-control" })
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                @Html.DropDownList("cboResponsableFilter", (SelectList)ViewBag.RESPONSABLE, "Filtrar por Responsable...", new { @class = "form-control" })
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                @Html.DropDownList("cboEstadoFilter", (SelectList)ViewBag.ESTADO, "Filtrar por estado....", new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" class="flat" id="chk-include-fecReg"> Incluir Fecha Creación
+                    </label>
+                </div>
+                <input type="hidden" class="form-control" id="txt-fecha-inicio" />
+                <input type="hidden" class="form-control" id="txt-fecha-final" />
+
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div id="reportHistorialRange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="container-report-historial">
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><small>Ticket No <strong>@item.Nro</strong></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width:30px;">Soporte</th>
+                                        <th>Empresa</th>
+                                        <th>F. Registro</th>
+                                        <th>Progreso</th>
+                                        <th>Estado</th>
+                                        <th>Encargado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var grupo in item.tickets)
+                                    {
+                                        <tr>
+                                            <th scope="row">@grupo.detalle.Id</th>
+                                            <td>@grupo.empresa</td>
+                                            <td>
+                                                @if (grupo.detalle.estado.IdEstado == 4)
+                                                {
+                                                    <strong>@grupo.detalle.FechaRegistro</strong>
+                                                }
+                                                else
+                                                {
+                                                    @grupo.detalle.FechaRegistro
+                                                }
+
+                                            </td>
+                                            <td>@grupo.detalle.progreso</td>
+                                            <td>
+                                                @{
+                                                    string status = "";
+                                                    if (grupo.detalle.estado.IdEstado == 1)
+                                                    {
+                                                        status = "bg-open-status";
+
+                                                    }
+                                                    else if (grupo.detalle.estado.IdEstado == 2)
+                                                    {
+                                                        status = "bg-pending-status";
+                                                    }
+                                                    else if (grupo.detalle.estado.IdEstado == 3)
+                                                    {
+                                                        status = "bg-solved-status";
+                                                    }
+                                                    else if (grupo.detalle.estado.IdEstado == 4)
+                                                    {
+                                                        status = "bg-closed-status";
+                                                    }
+                                                    <span class="icon"><i class="fa fa-circle @status"></i></span>
+                                                }
+                                                @grupo.detalle.estado.DesEstado
+                                            </td>
+                                            <td>@grupo.detalle.encargado.Nombre</td>
+                                        </tr>
+                                    }
+                                        <tr>
+                                            <th colspan="2">Tiempo Duración </th>
+                                            <td colspan="4">@item.tiempoDura</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        }
+        @if (Model.Count() == 0)
+        {
+            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <strong>Sistema Tickets! </strong> No se encontraron tickets para hoy
+            </div>
+        }
+    </div>
+
+</div>
+

@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "ListarSedes";
+}
+
+
+@*@{
+    ViewBag.Title = "ListarLector";
+}*@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+
+                @*<div class="form-inline">
+
+                    <label class="col-sm-1 col-form-label" for="name">Namegfnvbnmbnmbn,m,nm,</label>
+                    <input type="text" class="form-control">
+
+                </div>*@
+
+
+                <div class="col-lg-8 col-md-8 col-sm-8 ">
+                    <h3 class="card-title">Listado de Sedes</h3>
+                </div>
+
+                @*<div class="col-md-2 col-sm-2 col-xs-12 ">
+                    <label style="margin-left: 60px; padding-top:1px;">Estado de Sede: </label>
+                </div>*@
+
+                <div class="col-lg-4 col-md-4 col-sm-4   form-inline">
+
+                     <label style="margin-left: 10px; padding-top:1px; float:right;">Estado de Sede: </label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <select class="form-control col-md-5 " id="cboEstadoSedesList" name="cboEstadoLect" style="float:right;">
+                        <option value="1">Activos</option>
+                        <option value="0">Inactivos</option>
+                        <option value="2">Todos</option>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <a class="btn btn-icon btn-success" id="btn-nuev-sedes" title="Nueva Sede" style="color:white;float:right;" data>
+                        @*https://icons.getbootstrap.com/icons/fingerprint/*@
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+                        </svg>
+                    </a>
+                </div>
+
+                @*<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 text-right">
+                    <a class="btn btn-icon btn-success" id="btn-nuev-sedes" title="Nueva Sede" style="color:white" data>
+                        https://icons.getbootstrap.com/icons/fingerprint/
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+                        </svg>
+                    </a>
+                </div>*@
+            </div>
+            <div class="table-responsive" id="pedido-cabecera-table" style="padding-right :10px;">
+                <table class="table card-table table-hover table-vcenter  datatable-sedes dt-lect" style="width:100%">  @*datatable-lector*@
+                    <thead class="thead-light">
+                        <tr style="color: darkred  ;"> @*#495057*@
+                            <th hidden>intIdSede</th>
+                            <th style="width: 10%">CÓDIGO</th>
+                            <th><div style="min-width: 80px"> DESCRIPCIÓN</div></th>
+                            <th style="width: 30% !important">DIRECCIÓN</th>
+                            <th style="width: 10%">ESTADO</th>
+                            <th style="width: 10%">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="uploader" style="display:none">
+    <input id="fileInput" type="file" multiple>
+    <input type="submit" value="Upload file" />
+</form>
+
+<div class="modal fade" id="modal-sedes-reg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitlePer">REGISTRO DE SEDES</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <!--Numero-->
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Código</label></div></div>
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="" id="txt_strCoLocal" maxlength="9" @*onKeyPress="return checkIt(event)"*@ />
+                        <input type="text" class="form-control" name="" id="txt_intIdSede" hidden />    <!--Codigo Sede escondifo-->
+                    </div>
+                </div>
+
+                <!--Serie-->
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                <div class="form-group">
+                    <label class="form-label col-form-label">Descripción</label>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="" id="txt_strDeLocal" maxlength="50" onkeypress="validarPersonal(event)" />
+                    </div>
+                </div>
+                <!--Descripcion-->
+
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                <div class="form-group">
+                    <label class="form-label col-form-label">Dirección</label>
+                        </div>
+                </div>
+
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txt_strDireccion" maxlength="50" onkeypress="txt_strDireccion(event)">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-gray" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-red" id="btn-save-sedes">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+
+        fn_cargarSedes2();
+
+    }    
+
+</script>
+
+
+

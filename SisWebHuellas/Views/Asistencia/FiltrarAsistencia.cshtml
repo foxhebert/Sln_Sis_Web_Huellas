@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Dominio.Entidades.Personalizado.ItemAsistencia>
+
+<table class="table card-table table-hover table-vcenter datatable-listado">
+    <thead class="thead-light">
+        <tr>
+            <th>Código</th>
+            <th>Nombres</th>
+            <th>Tarjeta</th>
+            <th>Cód. Personal</th>
+            <th>Num. Huellas</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Sede</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.iCodUsuario)</td>
+                <td>@Html.DisplayFor(modelItem => item.sNombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.CardNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cod_Personal)</td>
+                <td>@Html.DisplayFor(modelItem => item.NumHuellas)</td>
+                <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                <td>@Html.DisplayFor(modelItem => item.Hora)</td>
+                <td>@Html.DisplayFor(modelItem => item.Sede)</td>
+                <td>@Html.DisplayFor(modelItem => item.strEstado)</td>
+            </tr>
+        }
+    </tbody>
+</table>

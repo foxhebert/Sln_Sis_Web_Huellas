@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Dominio.Entidades.Personalizado" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Dominio.Entidades.Personalizado" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ListItemAsistencia">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemAsistencia" nillable="true" type="tns:ItemAsistencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItemAsistencia" nillable="true" type="tns:ListItemAsistencia" />
+  <xs:complexType name="ItemAsistencia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iCodUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="sNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumHuellas" type="xs:int" />
+      <xs:element minOccurs="0" name="CardNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="Cod_Personal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fecha" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sede" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strDispositivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strEstado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="intFinger" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemAsistencia" nillable="true" type="tns:ItemAsistencia" />
+</xs:schema>

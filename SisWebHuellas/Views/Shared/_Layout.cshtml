@@ -1,0 +1,710 @@
+﻿
+@using Dominio.Entidades;
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#4188c9">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <!-- Generated: 2019-04-04 16:57:42 +0200 -->
+    <title>Registro de Huellas Web</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @*<link rel="stylesheet" href="~/Content/font-awesome/font-awesome.min.css">*@
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+
+    <!-- Dashboard Core -->
+    <link href="~/Content/assets/css/dashboard.css" rel="stylesheet" />
+
+    <!-- c3.js Charts Plugin -->
+    <link href="~/Content/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
+
+    <!-- datapicker css-->
+    <link rel="stylesheet" href="~/Content/assets/plugins/datapicker/css/datepicker3.css">
+
+    <!-- datatables fixed header -->
+    <link href="~/Content/assets/plugins/datatables/css/fixedHeader.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/assets/plugins/datatables/css/responsive.bootstrap.css" rel="stylesheet" />
+
+    <!-- ambiance -->
+    <link href="~/Content/assets/plugins/ambiance/css/jquery.ambiance.css" rel="stylesheet" />
+
+    <link href="~/Content/assets/css/jquery-confirm.css" rel="stylesheet" />
+
+    @{
+        ZKLoginOff objUsuario = new ZKLoginOff();
+        objUsuario = (ZKLoginOff)Session["USUARIO"];
+    }
+
+    <OBJECT style="display:none" classid="clsid:A318A9AC-E75F-424C-9364-6B40A848FC6B" width=10 height=10 id=zkonline declare=true></OBJECT>
+    <COMMENT style="display:none">
+        <EMBED type="application/x-eskerplus"
+               classid="clsid:A318A9AC-E75F-424C-9364-6B40A848FC6B"
+               codebase="ZKOnline.ocx"
+               width=0 height=0 style="visibility:hidden">
+        </EMBED>
+    </COMMENT>
+    <style>
+        html {
+            min-height: 100%;
+            position: relative;
+        }
+
+        .alert-p {
+            margin: 0 10px;
+            padding: 2px 10px;
+            min-width: 153px;
+        }
+
+        .footer {
+            padding: 0.8rem;
+        }
+
+        section {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+        }
+
+
+
+
+        /* AÑADIDO HGM Solucion al arrow del combo paginacion datatable 02.11.2021 */
+        /***https://codepen.io/vkjgr/pen/VYMeXp ***/
+        /*SOLUCION AÑADIDA param LOS ARROWS object FLECHITA defs LOS COMBOBOX del DATATABLE param LOS LISTADOS*/
+        .dataTables_wrapper .dataTables_length select {
+            background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, #838383 50%, transparent 50%), radial-gradient(#fff 70%, transparent 72%);
+            background-position: calc(100% - 12px) calc(1em + 2px), calc(100% - 7px) calc(1em + 2px), calc(100% - .5em) .5em;
+            background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
+            background-repeat: no-repeat;
+        }
+        /*.dataTables_wrapper .dataTables_length select {
+        display: block;
+        appearance: block;
+        }*/
+ 
+
+
+
+    </style>
+</head>
+<body class="">
+    <div class="page">
+        <div class="flex-fill">
+
+            <div class="header py-4">
+                <div class="container">
+                    <div class="d-flex">
+                        <img src="~/images/vector-logo-tecflex2.svg" class="header-brand-img" alt="Tecflex logo" style="width:150PX;height:32px;">
+                        <div class="d-flex order-lg-2 ml-auto" id="11">
+
+                        </div>
+                        <div class="d-flex order-lg-2 ml-auto">
+                            <div class="dropleft">
+                                <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                                    <span class="avatar" style="background-image: url(../../images/user.png);"></span>
+                                    <span class="ml-2 d-none d-lg-block">
+                                        <span class="text-default" id="spn_user">@objUsuario.sNombreSesion</span><br />
+                                        <span class="text-default">@objUsuario.strSede</span>
+                                        <input type="hidden" id="idse" value="@objUsuario.intIdSede" />
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="z-index:20000;">
+                                    <a class="dropdown-item" href="@Url.Action("cerrarSession","Login")">
+                                        <i class="dropdown-icon fe fe-log-out"></i> Cerrar Sesion
+                                    </a>
+
+                                    <a href="" class="dropdown-item " onclick="tiempoentremarcas()" data-toggle="modal" data-target="#TiempoMarcacionesModal">
+                                        <i class="fa fa-clock-o"></i>&nbsp; &nbsp; Configuración
+                                    </a>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                            <span class="header-toggler-icon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation View -->
+            <div class="sticky-top">
+                <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-2 ml-auto">
+                                @*col-lg-3 ml-auto*@
+                                <form class="input-icon my-3 my-lg-0">
+                                    <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1" hidden>
+                                </form>
+                            </div>
+                            <div class="col-lg order-lg-first">
+                                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                                    @foreach (var item in objUsuario.OpcionesMenuOff)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="@Url.Action(item.StrAccion,item.StrControlador)" class="nav-link" id="m_@item.StrCoMenus"><i class="@item.StrIcono"></i> @item.StrDeMenus</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+
+                            @*<div id="">
+                                <div style="text-decoration:underline;">
+                              
+                                    <div style="margin-right:7px;">
+                                        <button type="button"
+                                          class="btn btn-primary btn-sm" data-toggle="modal" data-target="#TiempoMarcacionesModal"
+                                                >
+                                        <i class="fa fa-check-circle">
+                                            </i> Tiempo entre marcas
+                                        </button>                                      
+                                    </div>
+                                </div>
+                            </div>*@  
+                            
+                            <div id="div_down_set" style="display:none;">
+                                <div class="alert-info alert alert-p" role="alert" id="altInstall" style="display:none;text-decoration:underline;">
+                                    <a href="~/Install/setup.exe" style="display:none" id="down_set" hidden> Descargar ZKOnline </a>
+                                    <span id="spn_down_set" style="cursor:pointer"> Descargar ZKOnline </span>
+                                </div>
+                            </div>                               
+                            <div class="alert alert-p" role="alert" id="altConector"></div>
+                            <div style="margin-right:7px;"><button type="button" class="btn btn-secondary btn-sm" id="btn-val-silk" style="display:none"><i class="fa fa-check-circle"></i> Validar Conexión</button></div>
+                            <div style="margin-right:7px;"><button type="button" class="btn btn-primary btn-sm" id="btn-iniciarMarc" style="display:none"><i class="fa fa-hand-o-up"></i> Iniciar Marcaciones</button></div>
+                          @*  <button type="button" class="btn btn-primary btn-sm" id="btn-validar-sesion-prueba" >BOTON DE PRUEBA</button>*@
+                        </div>
+                    </div>
+                </div>
+                <!-- fin Navigation View -->
+
+            </div>
+
+            <div class="modal fade" id="modal-descarga-msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitlePer">REINSTALAR ZKONLINE</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <!--Paso 1-->
+                            <div class="col-lg-12 col-md-7 col-sm-7 col-xs-7">
+                                <div class="form-group">
+                                    <label class="form-label col-form-label" id="msg_lbl"> ZKOnline ya se encuentra instalado. Si desea reinstalar el Driver siga los siguientes pasos:</label>
+                                </div>
+                            </div>
+                            <!--Paso 2-->
+                            <div class="col-lg-12 col-md-7 col-sm-7 col-xs-7">
+                                    <label class="form-label" id="msg_lbl1">     1. Descargue y guarde el instalador "setup.exe" en una carpeta a la que pueda acceder facilmente. </label>
+                                    <label class="form-label" id="msg_lbl2">     2. Cierre completamente este Navegador antes de iniciar la instalación. </label>
+                                    <label class="form-label" id="msg_lbl3">     3. Busque la carpeta donde guardó el instalador "setup.exe" y ejecútelo como Administrador. </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-red" id="btn-descarga">DESCARGAR</button>
+                            <button type="button" class="btn btn-gray" id="btn-sgt-n">CERRAR NAVEGADOR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- fin Navigation View -->
+
+            <div class="" style="margin-top:10px">
+                <!--class="my-3 my-md-5"-->
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    @*<div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                        <small id="smlVersion">Servicio: </small>
+                    </div>*@
+                    <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                        <small> Web: 1.0.14.210628.AW</small>
+                        @*<small> Web: 1.0.10.210625.AW-QA2</small>*@
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Button trigger modal -->
+    @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TiempoMarcacionesModal">
+        Launch demo modal
+    </button>*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="TiempoMarcacionesModal" tabindex="-1" role="dialog"  style="margin-top:90px;"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CONFIGURACIÓN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        @*<span aria-hidden="true">&times;</span>*@
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group">
+                        <label class="form-label col-form-label">Tiempo entre Marcas</label></div></div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <div class="form-group">
+                            @*<input id="appt-time"  class ="without_ampm" type="number" name="appt-time" value="13:30">*@
+
+                            <input type="text" style="font-size:19px; text-align:center;"  
+                                   class="without_ampm form-control" name="" id="txt_tiempo_entre_marcacion"  value="00:00"  hidden/>
+     
+                            <input style="font-size:21px; text-align:center; width:45px; border-color:#aaabac; border-radius:5px;" 
+                                   class="someinput" 
+                                   type="text" 
+                                   value="00"
+                                   maxlength="2"
+                                   id="input_hh"
+                                   onkeypress = "input_hh(event)"
+                                   onfocusout="input_hh_validar()"
+                                   
+                                   /> <span  style="font-size:26px;">:</span> 
+                            <input style="font-size:21px; text-align:center; width:45px; border-color:#8c8d8a;border-radius:5px;"
+                                   class="someinput"
+                                   type="text"
+                                   value="00"
+                                   maxlength="2"
+                                   id="input_mm"
+                                   onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                                   onfocusout="input_mm_validar()"
+                                   /><span style="font-size:26px;"> (HH:mm)</span>
+                                   @*onkeydown="input_mm(event)"*@ 
+                            @*onmouseout="inputceros()"*@ 
+
+
+                            @*https://jqueryui.com/spinner/*@
+
+
+                            @*<input name="value" class="ui-spinner-input" id="spinner" role="spinbutton" aria-valuenow="18" autocomplete="off">*@
+                        
+                        
+                        </div>
+                    </div>
+
+
+
+                 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModal">CERRAR</button>
+                    <button type="button" class="btn btn-primary"   onclick="actualizarTiempoMarcas()" >GUARDAR CAMBIOS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <br />
+    <br />
+    <br />
+    <script src="~/Content/assets/js/jquery.js"></script>
+    <!-- scripts -->
+    <script src="~/Content/assets/js/vendors/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/assets/js/vendors/jquery.sparkline.min.js"></script>
+    <script src="~/Content/assets/js/vendors/selectize.min.js"></script>
+    <script src="~/Content/assets/js/vendors/jquery.tablesorter.min.js"></script>
+    <script src="~/Content/assets/js/vendors/circle-progress.min.js"></script>
+    <script src="~/Content/assets/plugins/datapicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/assets/plugins/datatables/js/jquery.dataTables.js"></script> 
+    <script src="~/Content/assets/plugins/datatables/js/dataTables.fixedHeader.js"></script>
+    <script src="~/Content/assets/plugins/datatables/js/dataTables.responsive.js"></script>
+    <script src="~/Content/assets/plugins/datatables/js/responsive.bootstrap.js"></script>
+    <script src="~/Content/assets/plugins/ambiance/js/jquery.ambiance.js"></script>
+    <script src="~/Content/assets/plugins/blockUI/jquery.blockUI.js"></script>
+    <script src="~/Content/assets/js/vendors/jquery-confirm.js"></script>
+    <!-- AUTOCOMPLETE -->
+    <script src="~/Content/vendors/autocomplete/jquery.auto-complete.min.js"></script>
+    <script src="~/Content/vendors/autocomplete/jquery.auto-complete.js"></script>
+    <link href="~/Content/vendors/autocomplete/jquery.auto-complete.css" rel="stylesheet" />
+
+    <script src="~/Content/assets/js/enrollment.js"></script>
+    <script src="~/Content/assets/js/coreweb.js"></script>
+    <script>
+        //localStorage.clear(); /*15.06.2021 Aqui limpia el LS (código encontrado) se comenta para pruebas*/
+        window.localStorage.setItem('esadm',@objUsuario.intEsAdmin);
+    </script>
+
+    <script src="~/Content/assets/js/vendors/jquery.table2excel.js"></script>
+
+    <script src="~/Content/vendors/datatables.net/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/vendors/datatables.net/js/jszip.min.js"></script>
+    <script src="~/Content/vendors/datatables.net/js/buttons.html5.min.js"></script>
+
+    @*<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>*@
+
+
+
+
+
+    <!--QUITAR REMOVER EL AM PM DEL IMPUT-->
+    <style>
+
+        .someinput::-ms-clear {
+            display: none;
+        }
+
+
+
+        /*.without_ampm::-webkit-datetime-edit-ampm-field {
+            display: none;
+        }*/
+
+
+        /*.without_ampm::-webkit-datetime-edit-ampm-field {
+            display: none;
+        }*/
+
+        /*input[type=time]::-webkit-clear-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            margin: -10px;
+        }*/
+    </style>
+
+
+
+    <script>
+
+
+
+        function input_mm_validar() {
+
+            //alert(($("#input_mm").val()).toString().padStart(2, "0"));
+
+            var inputmm = ($("#input_mm").val());
+
+            if ($("#input_mm").val().length == 1) {
+
+                //$("#input_mm").val(59);
+                $("#input_mm").val( '0' + inputmm );
+
+            }
+
+            if (parseInt(inputmm ) > 59) {
+
+                //$("#input_mm").val(59);
+                $("#input_mm").val(59);
+
+            }
+
+
+        }
+
+
+
+        function input_hh_validar() {
+
+            //alert(($("#input_mm").val()).toString().padStart(2, "0"));
+            var inputhh = ($("#input_hh").val());
+
+            if ($("#input_hh").val().length == 1) {
+
+                 $("#input_hh").val('0' + inputhh);
+
+            }
+
+            if (parseInt(inputhh) > 24) {
+
+                $("#input_hh").val(24);
+
+            }
+
+
+        }
+
+
+
+        function input_hh(evt) {
+            //onkeypress = "inpt_HH(event)"
+            //let k = event ? event.which : window.event.keyCode;
+            //if (k == 32) return false;
+
+
+            var theEvent = evt || window.event;
+            // Handle paste
+            if (theEvent.type === 'paste') {
+                key = event.clipboardData.getData('text/plain');
+            } else {
+                // Handle key press
+                var key = theEvent.keyCode || theEvent.which;
+                key = String.fromCharCode(key);
+            }
+            var regex = /[0-9]/; //Números, Letras ---> a-z,A-Z, _, - sin espacio, slash, guion, guion bajo
+            if (!regex.test(key)) {
+                theEvent.returnValue = false;
+                if (theEvent.preventDefault) theEvent.preventDefault();
+            }
+
+            if ((parseInt($("#input_hh").val())) > 24) { //solo acepta 2 carartesres
+                //theEvent.returnValue = false;
+                //alert((parseInt($("#input_mm").val())));
+                $("#input_hh").val(24)
+                //if (theEvent.preventDefault) theEvent.preventDefault();
+            }
+            
+            //if ($("#input_hh").val().length > 1) { //solo acepta 2 carartesres
+            //    theEvent.returnValue = false;
+            //    //alert($("#input_hh").val().length);
+            //    if (theEvent.preventDefault) theEvent.preventDefault();
+            //}
+
+
+
+        }
+
+        function input_mm(evt) {
+            //onkeypress = "inpt_HH(event)"
+            //let k = event ? event.which : window.event.keyCode;
+            //if (k == 32) return false;
+            //alert((parseInt($("#input_mm").val())));
+
+            var theEvent = evt || window.event;
+            // Handle paste
+            if (theEvent.type === 'paste') {
+                key = event.clipboardData.getData('text/plain');
+            } else {
+                // Handle key press
+                var key = theEvent.keyCode || theEvent.which;
+                key = String.fromCharCode(key);
+            }
+            var regex = /[0-9]/; //Números, Letras ---> a-z,A-Z, _, - sin espacio, slash, guion, guion bajo
+            if (!regex.test(key)) {
+                theEvent.returnValue = false;
+                if (theEvent.preventDefault) theEvent.preventDefault();
+            }
+
+            if ( (parseInt($("#input_mm").val())) > 59 ) { //solo acepta 2 carartesres
+                //theEvent.returnValue = false;
+                //alert((parseInt($("#input_mm").val())));
+                $("#input_mm").val(60)
+                //if (theEvent.preventDefault) theEvent.preventDefault();
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+        function actualizarTiempoMarcas() {
+
+
+            ///GUARDAR TIEMPO EN ENTEROS
+            //var tmar = $('#txt_tiempo_entre_marcacion').val();     
+            //var tmar = $('#txt_tiempo_entre_marcacion').val();     
+            //alert(tmar);
+            //var tmarTimeInteger = ((tmar.substring(3, 6) * 1) + (tmar.substring(0, 2) * 60));
+            //alert(tmarTimeInteger);
+
+
+            var t1 = $('#input_hh').val();     
+            var t2 = $('#input_mm').val();     
+            //alert(t1);
+            //alert(t2);
+            var tmarTimeInteger = ((t2.substring(0, 2) * 1) + (t1.substring(0, 2) * 60));
+            //alert(tmarTimeInteger);
+
+
+
+            $.post(
+
+                '/Sedes/ListarTiempoEntreMarca',
+                {
+                    x_filtro: tmarTimeInteger
+  
+                },
+                function (response) {
+
+                    if (response.length > 0) {
+
+                        $('#cerrarModal').click();
+
+                        $.alert({
+                            title: "Actualización",
+                            content: "La actualización se ha procesado correctamente.",
+                            type: 'green',
+                            escapeKey: true,
+                            autoClose: 'ok|' + (2 * 1000),
+                            buttons: {
+                                ok: {
+                                    text: 'Aceptar',
+                                    action: function () {
+
+                                       
+
+                                    }
+                                }
+                            }
+                        });
+
+
+
+
+
+
+                    }
+               
+
+                }
+            ).fail(function (result) {
+                //alert()
+            });
+
+
+
+
+        }
+
+
+
+        function tiempoentremarcas(){
+                //alert("entro...");
+                //fn_limpiarFormLector();
+
+            //$('#txt_tiempo_entre_marcacion').val('');
+
+            $('#input_hh').val('');
+            $('#input_mm').val('');
+
+
+                $.post(
+
+                    '/Sedes/ListarTiempoEntreMarca',
+                    {
+                          x_filtro: ''
+
+                    },
+                    function (response) {
+
+                        //alert(response[0].intIdSede);
+
+                        var totalMinutes = (response[0].intIdSede);//;$('.totalMin').html();
+                        var hours = Math.floor(totalMinutes / 60);
+                        var minutes = totalMinutes % 60;
+                        //$('#txt_tiempo_entre_marcacion').val(hours.toString().padStart(2, "0") + ':' + minutes.toString().padStart(2, "0"));
+
+
+                        if ((hours.toString()).length == 1) {
+
+                            $('#input_hh').val( '0' + hours);
+
+                        }
+                        else {
+                        $('#input_hh').val(hours);
+
+                        }
+
+                        if ((minutes.toString()).length == 1) {
+
+                            $('#input_mm').val('0' + minutes);
+                        }
+                        else {
+                            $('#input_mm').val(minutes);
+
+                        }
+
+                      
+
+                        //$('#input_hh').val(hours.toString().padStart(2, "0"));
+                        //$('#input_mm').val(minutes.toString().padStart(2, "0"));
+                     
+
+                    }
+                ).fail(function (result) {
+         
+                    //fn_controlarExcepcion(result);
+                    });
+
+        }
+
+
+        ////    }
+        ////    catch (e) {
+        ////        $.post(
+        ////            '/Login/LogsJs',
+        ////            {
+        ////                Excep: e
+        ////                , NameFunction: "coreweb.js | fn_cargarLector"
+        ////            },
+        ////            function (response) {
+        ////                console.log("Error js en TXt log")
+        ////            }
+        ////        ).fail(function (result) {
+        ////        });
+        ////        console.error();
+        ////}
+
+
+        ////////}
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

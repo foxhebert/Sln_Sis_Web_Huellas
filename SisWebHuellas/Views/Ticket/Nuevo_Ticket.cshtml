@@ -1,0 +1,172 @@
+﻿@model Dominio.Entidades.TicketEN
+
+@{
+    ViewBag.Title = "NuevoTicket";
+}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">                
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <h3>Registrar Ticket</h3>
+                </div>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form id="form-new-ticket" class="form-horizontal form-label-left " onsubmit="return maxSizeIMG_PDF()" action="/Ticket/Nuevo_Ticket" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for=""> Nro Ticket </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.HiddenFor(model => model.detalle.Id)
+                                @Html.EditorFor(model => model.Nro, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Nro, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for=""> Fecha de Registro </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class='input-group date' id='myDatepicker2'>
+                                    @Html.EditorFor(model => model.detalle.FechaRegistro, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.detalle.FechaRegistro, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Hora de Registro</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class='input-group date' id='myDatepicker3'>
+                                    @Html.EditorFor(model => model.detalle.horaRegistro, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })@*, @style = "display:none" } })*@
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.detalle.horaRegistro, "", new { @class = "text-danger", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Contacto </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                @Html.EditorFor(model => model.contacto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.contacto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Empresa</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                @Html.EditorFor(model => model.empresa, new { htmlAttributes = new { @class = "form-control uppercase-input" } })
+                                @Html.ValidationMessageFor(model => model.empresa, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">                            
+                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">                               
+                                Motivo
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                @Html.DropDownListFor(model => model.motivo.IdMotivo, (SelectList)ViewBag.MOTIVO, " - - - Seleccione - - -", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.motivo.IdMotivo, "", new { @class = "text-danger" })                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                <span class="" id="icon-prioridad"></span>
+                                Prioridad
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                @Html.DropDownListFor(model => model.detalle.prioridad.IdPrio, (SelectList)ViewBag.PRIORIDAD, " - - - Seleccione - - -", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.detalle.prioridad.IdPrio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Responsable</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                @Html.DropDownListFor(model => model.detalle.encargado.IdEnc, (SelectList)ViewBag.ASIGNAR, " - - - Seleccione - - -", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.detalle.encargado.IdEnc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Estado</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                @Html.DropDownListFor(model => model.detalle.estado.IdEstado, (SelectList)ViewBag.ESTADO, " - - - Seleccione - - -", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.detalle.estado.IdEstado, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Adjunto</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="input-group">
+                                    <input type="file" name="detalle.adjunto" id="real-input" style="display:none" multiple data-max-size="3000000" accept=".gif,.jpg,.jpeg,.png">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="browse-btn btn btn-primary">Browse..</button>
+                                    </span>
+                                    <input type="text" class="file-info form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                @Html.TextAreaFor(model => model.detalle.descripcion, 3, 1, htmlAttributes: new { style = "width: 100%; max-width: 100%;", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.detalle.descripcion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-8">
+                                <!--<button class="btn btn-secondary" type="button">Cancelar</button>-->
+                                @Html.ActionLink("Cancelar", "ConsultaTicket", null, new { @class = "btn btn-default" })
+                                <button type="submit" class="btn btn-danger" id="btn-new-ticket">Registrar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.browse-btn').click(function()  {
+        $('#real-input').click();
+    });
+
+    $('#real-input').change(function () {
+        var cant = $('#real-input').get(0).files.length;
+
+        if (cant > 1) {
+            $('.file-info').val(cant + ' archivos seleccionados');
+        } else {
+            $('.file-info').val($('#real-input').get(0).files[0].name);
+        }
+    });
+
+
+    if ('@ViewBag.MENSAJE' != "") {
+
+        alert('@ViewBag.MENSAJE');
+    }
+</script>

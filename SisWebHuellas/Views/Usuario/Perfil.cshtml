@@ -1,0 +1,160 @@
+﻿@using Dominio.Entidades
+@model Dominio.Entidades.UsuarioEN
+
+@{
+    ViewBag.Title = "Perfil";
+}
+
+@{
+    UsuarioEN objUsuario = new UsuarioEN();
+    objUsuario = (UsuarioEN)Session["USUARIO"];
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Perfil de Usuario</h3>
+        </div>
+
+        @*<div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><small>Editar Perfil</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Sistema Control de Tickets,</strong> Si usted actualiza su perfil de Usuario, se cerrara sesión para que vuelva a Iniciar.
+                    </div>
+                    <form class="form-horizontal form-label-left" action="/Usuario/EditarPerfil" method="post" enctype="multipart/form-data" onsubmit="return maxSizeImagePefil()">
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Current avatar -->
+                                    <img class="img-responsive avatar-view" data-toggle="tooltip" data-placement="top" title="Seleccione una nueva Foto. Dimensiones máximas para la foto 200 x 200 pixeles." src="@Url.Action("FotoPerfil","Usuario")" id="imgUser" alt="Avatar">
+                                </div>
+                                <div id="alert-max-size-image"></div>
+                            </div>
+                            <h3>@Model.Nombres @Model.ApePaterno</h3>
+                            <input type="file" accept=".gif,.jpg,.jpeg,.png" name="imgUser" id="id-load-file" style="display:none" />
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                            @Html.HiddenFor(model => model.IdUsu)
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombres</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellido Paterno</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.ApePaterno, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ApePaterno, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellido Materno</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.ApeMaterno, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ApeMaterno, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Constraseña</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.clave, new { htmlAttributes = new { @class = "form-control", Type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.clave, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Rol</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @*@if (objUsuario.rol.IdRol != 1)
+                                        {
+                                            @Html.DropDownListFor(model => model.rol.IdRol, (SelectList)ViewBag.ROL, new { @class = "form-control", @disabled = "" })
+                                        }
+                                        else
+                                        {*@
+                                    @Html.DropDownListFor(model => model.rol.IdRol, (SelectList)ViewBag.ROL, new { @class = "form-control" })
+                                    @*}*@
+
+                                    @Html.ValidationMessageFor(model => model.rol.IdRol, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Empresa</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.DropDownListFor(model => model.empresa.IdEmp, (SelectList)ViewBag.EMPRESA, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.empresa.IdEmp, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-10">
+                                    <a href="@Url.Action("ConsultaTicket","Ticket")" class="btn btn-round btn-secondary">Inicio</a>
+                                    <button type="submit" class="btn btn-round btn-danger" data-toggle="tooltip" data-placement="top" title="Se cerrará sesión al actualizar">Actualizar</button> <!--onclick="ActualizarPerfil()"-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //se comenta error
+    //if (@objUsuario.rol.IdRol!== 1)
+    //    $('#rol_IdRol option:not(:selected)').attr('disabled', true);
+
+    //$('#imgUser').click(() => {
+    //    $('#id-load-file').click();
+    //});
+
+    //$('#id-load-file').change(() => {
+    //    console.log('load photo user')
+    //    onFileSelected(event);
+    //});
+
+</script>

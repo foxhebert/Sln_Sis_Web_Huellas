@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ws_HuellasWeb" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Dominio.Entidades" />
+      <xsd:import schemaLocation="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Dominio.Entidades.Personalizado" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUsuarioCN_InsertarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarUsuario_StringFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q1:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_EliminarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_EliminarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_EliminarUsuario_StringFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q2:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_CambiarEstadoUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarEstadoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_CambiarEstadoUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarEstadoUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_CambiarEstadoUsuario_StringFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q3:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuarioByCod_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuarioByCod" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuarioByCod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuarioByCodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuarioByCod_StringFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q4:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuarioByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuarioByID" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuarioByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuarioByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuarioByID_StringFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q5:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarPersonalExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPersonalExport" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarPersonalExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPersonalExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarPersonalExport_StringFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q6:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarPersonalInactivoExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPersonalInactivoExport" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarPersonalInactivoExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPersonalInactivoExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarPersonalInactivoExport_StringFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q7:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasExport" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasExport_StringFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q8:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarMarcasImport_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarMarcasImport" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarMarcasImport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarMarcasImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarMarcasImport_StringFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q9:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ActualizaFechaSincro_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizaFechaSincro" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ActualizaFechaSincro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizaFechaSincroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ActualizaFechaSincro_StringFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q10:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ObtieneConfigValores_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtieneConfigValores" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ObtieneConfigValores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtieneConfigValoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ObtieneConfigValores_StringFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q11:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertMasivo_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMasivo" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertMasivo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMasivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertMasivo_StringFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q12:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10Usuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasAlg10Usuario" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10Usuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasAlg10UsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10Usuario_StringFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q13:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10Todo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasAlg10Todo" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10Todo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasAlg10TodoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10Todo_StringFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q14:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10UsuarioCadena_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasAlg10UsuarioCadena" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10UsuarioCadena_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarHuellasAlg10UsuarioCadenaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarHuellasAlg10UsuarioCadena_StringFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q15:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarHuella_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarHuella" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarHuella_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarHuellaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_InsertarHuella_StringFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q16:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_EliminarHuella_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarHuella" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_EliminarHuella_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarHuellaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_EliminarHuella_StringFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q17:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_IdentificarHuella_InputMessage">
+    <wsdl:part name="parameters" element="tns:IdentificarHuella" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_IdentificarHuella_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IdentificarHuellaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_IdentificarHuella_StringFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q18:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuariosTodo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosTodo" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuariosTodo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosTodoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarUsuariosTodo_StringFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q19:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarMenuUsuarioCombo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMenuUsuarioCombo" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarMenuUsuarioCombo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMenuUsuarioComboResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarMenuUsuarioCombo_StringFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q20:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarMarcaciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMarcaciones" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarMarcaciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMarcacionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_ListarMarcaciones_StringFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q21:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarca_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarMarca" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarca_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarMarcaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarca_StringFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q22:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarca__InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarMarca_" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarca__OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarMarca_Response" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarca__StringFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q23:string" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarcaWinService_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarMarcaWinService" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarcaWinService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarMarcaWinServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioCN_RegistrarMarcaWinService_StringFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q24:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_Version_InputMessage">
+    <wsdl:part name="parameters" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_Version_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_Version_StringFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q25:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetCC_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCC" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetCC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetCC_StringFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q26:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetWs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWs" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetWs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetWs_StringFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q27:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetWslc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWslc" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetWslc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWslcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_GetWslc_StringFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q28:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLoginByCod_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLoginByCod" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLoginByCod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLoginByCodResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLoginByCod_StringFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q29:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLogin" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLogin_StringFault_FaultMessage">
+    <wsdl:part xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q30:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarUsers__InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsers_" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarUsers__OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsers_Response" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarUsers__StringFault_FaultMessage">
+    <wsdl:part xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q31:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarMenuUsers__InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMenuUsers_" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarMenuUsers__OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMenuUsers_Response" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarMenuUsers__StringFault_FaultMessage">
+    <wsdl:part xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q32:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLoginID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLoginID" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLoginID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLoginIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarLoginID_StringFault_FaultMessage">
+    <wsdl:part xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q33:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_InsertarLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarLogin" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_InsertarLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_InsertarLogin_StringFault_FaultMessage">
+    <wsdl:part xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q34:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_EliminarLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarLogin" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_EliminarLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_EliminarLogin_StringFault_FaultMessage">
+    <wsdl:part xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q35:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_CambiarSede_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarSede" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_CambiarSede_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarSedeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_CambiarSede_StringFault_FaultMessage">
+    <wsdl:part xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q36:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_CambiarContraseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarContraseña" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_CambiarContraseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarContraseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_CambiarContraseña_StringFault_FaultMessage">
+    <wsdl:part xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q37:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarSedeCombo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarSedeCombo" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarSedeCombo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarSedeComboResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarSedeCombo_StringFault_FaultMessage">
+    <wsdl:part xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q38:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarSedes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarSedes" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarSedes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarSedesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_ListarSedes_StringFault_FaultMessage">
+    <wsdl:part xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q39:string" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_MantenimientoSede_InputMessage">
+    <wsdl:part name="parameters" element="tns:MantenimientoSede" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_MantenimientoSede_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MantenimientoSedeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISistemaCN_MantenimientoSede_StringFault_FaultMessage">
+    <wsdl:part xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q40:string" />
+  </wsdl:message>
+  <wsdl:portType name="IUsuarioCN">
+    <wsdl:operation name="InsertarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarUsuario" message="tns:IUsuarioCN_InsertarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarUsuarioResponse" message="tns:IUsuarioCN_InsertarUsuario_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarUsuarioStringFault" name="StringFault" message="tns:IUsuarioCN_InsertarUsuario_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/EliminarUsuario" message="tns:IUsuarioCN_EliminarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/EliminarUsuarioResponse" message="tns:IUsuarioCN_EliminarUsuario_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/EliminarUsuarioStringFault" name="StringFault" message="tns:IUsuarioCN_EliminarUsuario_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarEstadoUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/CambiarEstadoUsuario" message="tns:IUsuarioCN_CambiarEstadoUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/CambiarEstadoUsuarioResponse" message="tns:IUsuarioCN_CambiarEstadoUsuario_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/CambiarEstadoUsuarioStringFault" name="StringFault" message="tns:IUsuarioCN_CambiarEstadoUsuario_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuarioByCod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuarioByCod" message="tns:IUsuarioCN_ListarUsuarioByCod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuarioByCodResponse" message="tns:IUsuarioCN_ListarUsuarioByCod_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuarioByCodStringFault" name="StringFault" message="tns:IUsuarioCN_ListarUsuarioByCod_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuarioByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuarioByID" message="tns:IUsuarioCN_ListarUsuarioByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuarioByIDResponse" message="tns:IUsuarioCN_ListarUsuarioByID_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuarioByIDStringFault" name="StringFault" message="tns:IUsuarioCN_ListarUsuarioByID_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPersonalExport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarPersonalExport" message="tns:IUsuarioCN_ListarPersonalExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarPersonalExportResponse" message="tns:IUsuarioCN_ListarPersonalExport_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarPersonalExportStringFault" name="StringFault" message="tns:IUsuarioCN_ListarPersonalExport_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPersonalInactivoExport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarPersonalInactivoExport" message="tns:IUsuarioCN_ListarPersonalInactivoExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarPersonalInactivoExportResponse" message="tns:IUsuarioCN_ListarPersonalInactivoExport_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarPersonalInactivoExportStringFault" name="StringFault" message="tns:IUsuarioCN_ListarPersonalInactivoExport_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasExport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasExport" message="tns:IUsuarioCN_ListarHuellasExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasExportResponse" message="tns:IUsuarioCN_ListarHuellasExport_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasExportStringFault" name="StringFault" message="tns:IUsuarioCN_ListarHuellasExport_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarMarcasImport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarMarcasImport" message="tns:IUsuarioCN_InsertarMarcasImport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarMarcasImportResponse" message="tns:IUsuarioCN_InsertarMarcasImport_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarMarcasImportStringFault" name="StringFault" message="tns:IUsuarioCN_InsertarMarcasImport_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaFechaSincro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ActualizaFechaSincro" message="tns:IUsuarioCN_ActualizaFechaSincro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ActualizaFechaSincroResponse" message="tns:IUsuarioCN_ActualizaFechaSincro_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ActualizaFechaSincroStringFault" name="StringFault" message="tns:IUsuarioCN_ActualizaFechaSincro_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneConfigValores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ObtieneConfigValores" message="tns:IUsuarioCN_ObtieneConfigValores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ObtieneConfigValoresResponse" message="tns:IUsuarioCN_ObtieneConfigValores_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ObtieneConfigValoresStringFault" name="StringFault" message="tns:IUsuarioCN_ObtieneConfigValores_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMasivo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/InsertMasivo" message="tns:IUsuarioCN_InsertMasivo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/InsertMasivoResponse" message="tns:IUsuarioCN_InsertMasivo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/InsertMasivoStringFault" name="StringFault" message="tns:IUsuarioCN_InsertMasivo_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasAlg10Usuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10Usuario" message="tns:IUsuarioCN_ListarHuellasAlg10Usuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10UsuarioResponse" message="tns:IUsuarioCN_ListarHuellasAlg10Usuario_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10UsuarioStringFault" name="StringFault" message="tns:IUsuarioCN_ListarHuellasAlg10Usuario_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasAlg10Todo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10Todo" message="tns:IUsuarioCN_ListarHuellasAlg10Todo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10TodoResponse" message="tns:IUsuarioCN_ListarHuellasAlg10Todo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10TodoStringFault" name="StringFault" message="tns:IUsuarioCN_ListarHuellasAlg10Todo_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasAlg10UsuarioCadena">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10UsuarioCadena" message="tns:IUsuarioCN_ListarHuellasAlg10UsuarioCadena_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10UsuarioCadenaResponse" message="tns:IUsuarioCN_ListarHuellasAlg10UsuarioCadena_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10UsuarioCadenaStringFault" name="StringFault" message="tns:IUsuarioCN_ListarHuellasAlg10UsuarioCadena_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarHuella">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarHuella" message="tns:IUsuarioCN_InsertarHuella_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarHuellaResponse" message="tns:IUsuarioCN_InsertarHuella_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/InsertarHuellaStringFault" name="StringFault" message="tns:IUsuarioCN_InsertarHuella_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarHuella">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/EliminarHuella" message="tns:IUsuarioCN_EliminarHuella_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/EliminarHuellaResponse" message="tns:IUsuarioCN_EliminarHuella_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/EliminarHuellaStringFault" name="StringFault" message="tns:IUsuarioCN_EliminarHuella_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IdentificarHuella">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/IdentificarHuella" message="tns:IUsuarioCN_IdentificarHuella_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/IdentificarHuellaResponse" message="tns:IUsuarioCN_IdentificarHuella_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/IdentificarHuellaStringFault" name="StringFault" message="tns:IUsuarioCN_IdentificarHuella_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosTodo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuariosTodo" message="tns:IUsuarioCN_ListarUsuariosTodo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuariosTodoResponse" message="tns:IUsuarioCN_ListarUsuariosTodo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarUsuariosTodoStringFault" name="StringFault" message="tns:IUsuarioCN_ListarUsuariosTodo_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarMenuUsuarioCombo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarMenuUsuarioCombo" message="tns:IUsuarioCN_ListarMenuUsuarioCombo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarMenuUsuarioComboResponse" message="tns:IUsuarioCN_ListarMenuUsuarioCombo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarMenuUsuarioComboStringFault" name="StringFault" message="tns:IUsuarioCN_ListarMenuUsuarioCombo_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarMarcaciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/ListarMarcaciones" message="tns:IUsuarioCN_ListarMarcaciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/ListarMarcacionesResponse" message="tns:IUsuarioCN_ListarMarcaciones_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/ListarMarcacionesStringFault" name="StringFault" message="tns:IUsuarioCN_ListarMarcaciones_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMarca">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarca" message="tns:IUsuarioCN_RegistrarMarca_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarcaResponse" message="tns:IUsuarioCN_RegistrarMarca_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarcaStringFault" name="StringFault" message="tns:IUsuarioCN_RegistrarMarca_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMarca_">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarca_" message="tns:IUsuarioCN_RegistrarMarca__InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarca_Response" message="tns:IUsuarioCN_RegistrarMarca__OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarca_StringFault" name="StringFault" message="tns:IUsuarioCN_RegistrarMarca__StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMarcaWinService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarcaWinService" message="tns:IUsuarioCN_RegistrarMarcaWinService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarcaWinServiceResponse" message="tns:IUsuarioCN_RegistrarMarcaWinService_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUsuarioCN/RegistrarMarcaWinServiceStringFault" name="StringFault" message="tns:IUsuarioCN_RegistrarMarcaWinService_StringFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ISistemaCN">
+    <wsdl:operation name="Version">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/Version" message="tns:ISistemaCN_Version_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/VersionResponse" message="tns:ISistemaCN_Version_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/VersionStringFault" name="StringFault" message="tns:ISistemaCN_Version_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/GetCC" message="tns:ISistemaCN_GetCC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/GetCCResponse" message="tns:ISistemaCN_GetCC_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/GetCCStringFault" name="StringFault" message="tns:ISistemaCN_GetCC_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/GetWs" message="tns:ISistemaCN_GetWs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/GetWsResponse" message="tns:ISistemaCN_GetWs_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/GetWsStringFault" name="StringFault" message="tns:ISistemaCN_GetWs_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWslc">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/GetWslc" message="tns:ISistemaCN_GetWslc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/GetWslcResponse" message="tns:ISistemaCN_GetWslc_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/GetWslcStringFault" name="StringFault" message="tns:ISistemaCN_GetWslc_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarLoginByCod">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginByCod" message="tns:ISistemaCN_ListarLoginByCod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginByCodResponse" message="tns:ISistemaCN_ListarLoginByCod_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginByCodStringFault" name="StringFault" message="tns:ISistemaCN_ListarLoginByCod_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/ListarLogin" message="tns:ISistemaCN_ListarLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginResponse" message="tns:ISistemaCN_ListarLogin_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginStringFault" name="StringFault" message="tns:ISistemaCN_ListarLogin_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsers_">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/ListarUsers_" message="tns:ISistemaCN_ListarUsers__InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/ListarUsers_Response" message="tns:ISistemaCN_ListarUsers__OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/ListarUsers_StringFault" name="StringFault" message="tns:ISistemaCN_ListarUsers__StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarMenuUsers_">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/ListarMenuUsers_" message="tns:ISistemaCN_ListarMenuUsers__InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/ListarMenuUsers_Response" message="tns:ISistemaCN_ListarMenuUsers__OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/ListarMenuUsers_StringFault" name="StringFault" message="tns:ISistemaCN_ListarMenuUsers__StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarLoginID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginID" message="tns:ISistemaCN_ListarLoginID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginIDResponse" message="tns:ISistemaCN_ListarLoginID_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/ListarLoginIDStringFault" name="StringFault" message="tns:ISistemaCN_ListarLoginID_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/InsertarLogin" message="tns:ISistemaCN_InsertarLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/InsertarLoginResponse" message="tns:ISistemaCN_InsertarLogin_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/InsertarLoginStringFault" name="StringFault" message="tns:ISistemaCN_InsertarLogin_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/EliminarLogin" message="tns:ISistemaCN_EliminarLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/EliminarLoginResponse" message="tns:ISistemaCN_EliminarLogin_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/EliminarLoginStringFault" name="StringFault" message="tns:ISistemaCN_EliminarLogin_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarSede">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/CambiarSede" message="tns:ISistemaCN_CambiarSede_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/CambiarSedeResponse" message="tns:ISistemaCN_CambiarSede_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/CambiarSedeStringFault" name="StringFault" message="tns:ISistemaCN_CambiarSede_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarContraseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/CambiarContraseña" message="tns:ISistemaCN_CambiarContraseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/CambiarContraseñaResponse" message="tns:ISistemaCN_CambiarContraseña_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/CambiarContraseñaStringFault" name="StringFault" message="tns:ISistemaCN_CambiarContraseña_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSedeCombo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/ListarSedeCombo" message="tns:ISistemaCN_ListarSedeCombo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/ListarSedeComboResponse" message="tns:ISistemaCN_ListarSedeCombo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/ListarSedeComboStringFault" name="StringFault" message="tns:ISistemaCN_ListarSedeCombo_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSedes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/ListarSedes" message="tns:ISistemaCN_ListarSedes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/ListarSedesResponse" message="tns:ISistemaCN_ListarSedes_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/ListarSedesStringFault" name="StringFault" message="tns:ISistemaCN_ListarSedes_StringFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MantenimientoSede">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISistemaCN/MantenimientoSede" message="tns:ISistemaCN_MantenimientoSede_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISistemaCN/MantenimientoSedeResponse" message="tns:ISistemaCN_MantenimientoSede_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISistemaCN/MantenimientoSedeStringFault" name="StringFault" message="tns:ISistemaCN_MantenimientoSede_StringFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IUsuarioCN" type="tns:IUsuarioCN">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/InsertarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/EliminarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarEstadoUsuario">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/CambiarEstadoUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuarioByCod">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarUsuarioByCod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuarioByID">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarUsuarioByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPersonalExport">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarPersonalExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPersonalInactivoExport">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarPersonalInactivoExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasExport">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarHuellasExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarMarcasImport">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/InsertarMarcasImport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaFechaSincro">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ActualizaFechaSincro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneConfigValores">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ObtieneConfigValores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMasivo">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/InsertMasivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasAlg10Usuario">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10Usuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasAlg10Todo">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10Todo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarHuellasAlg10UsuarioCadena">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarHuellasAlg10UsuarioCadena" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarHuella">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/InsertarHuella" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarHuella">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/EliminarHuella" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IdentificarHuella">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/IdentificarHuella" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosTodo">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarUsuariosTodo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarMenuUsuarioCombo">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarMenuUsuarioCombo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarMarcaciones">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/ListarMarcaciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMarca">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/RegistrarMarca" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMarca_">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/RegistrarMarca_" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMarcaWinService">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioCN/RegistrarMarcaWinService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ISistemaCN" type="tns:ISistemaCN">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Version">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/Version" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCC">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/GetCC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetWs">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/GetWs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetWslc">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/GetWslc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarLoginByCod">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/ListarLoginByCod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarLogin">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/ListarLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsers_">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/ListarUsers_" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarMenuUsers_">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/ListarMenuUsers_" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarLoginID">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/ListarLoginID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarLogin">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/InsertarLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarLogin">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/EliminarLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarSede">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/CambiarSede" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarContraseña">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/CambiarContraseña" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSedeCombo">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/ListarSedeCombo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSedes">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/ListarSedes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="MantenimientoSede">
+      <soap:operation soapAction="http://tempuri.org/ISistemaCN/MantenimientoSede" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="StringFault">
+        <soap:fault use="literal" name="StringFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ws_HuellasWeb">
+    <wsdl:port name="BasicHttpBinding_IUsuarioCN" binding="tns:BasicHttpBinding_IUsuarioCN">
+      <soap:address location="http://localhost/SisWsHuellas/ws_HuellasWeb.svc" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ISistemaCN" binding="tns:BasicHttpBinding_ISistemaCN">
+      <soap:address location="http://localhost/SisWsHuellas/ws_HuellasWeb.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

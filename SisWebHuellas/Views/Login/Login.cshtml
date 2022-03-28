@@ -1,0 +1,322 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Registro de Huellas Web</title>
+
+    <!-- Custom fonts for this template-->
+    @*<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">*@
+    @* Se tuvo que comentar esta referencia por no ser local 14.06.2021 ES *@
+    <!-- Custom styles for this template-->
+    <link href="~/Content/login/css/sb-admin-2.min.css" rel="stylesheet" />
+
+</head>
+
+<body class="" style="background-color:#c53c3c">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-logo">
+                                <h4 class="text-gray-900 mb-4">REGISTRO DE HUELLAS WEB</h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Bienvenidos</h1>
+                                    </div>
+                                    <hr>
+                                    <form class="user" action="/Login/Login" method="post" id="FormLogin_">
+
+                                        <div class="form-group pull-right" id="11">
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="id_NombreSesion" name="x_NombreSesion" aria-describedby="emailHelp" placeholder="Usuario">
+                                        </div>
+
+                                        <link href="~/Content/assets/css/bootstrap-icons.css" rel="stylesheet" />
+                                        <style type="text/css">
+                                            .cont-1 a {
+                                                margin-top: 6px;
+                                                margin-left: -32px;
+                                                cursor: pointer;
+                                            }
+
+                                            #txtpwd1 {
+                                                width: 260px;
+                                            }
+
+                                            /*#txtpwd2 {
+                                                width: 260px;
+                                            }*/
+                                        </style>
+
+                                      @*  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+                                        <style>
+                                            /* To hide IE10/MS Edge's implementation of the winking eye. */
+                                            ::-ms-reveal {
+                                                display: none !important;
+                                            }
+                                        </style>
+
+                                        @*<div class="input-group" style="display:flex">
+                                            <input type="password" class="form-control form-control-user" id="id_Password" name="x_Password" placeholder="Contraseña">
+                                       
+                                        </div>*@
+                    
+                                        <div class="input-group" style="display:flex; ">
+                                            <div class="input-group"   >
+                                                <div class="cont-1" style="display:flex">
+                                                    <input type="password" class="form-control" id="id_Password" name="x_Password" style="border-radius:80px; font-size:12px; width:350px;" placeholder="Contraseña">
+                                                    <a id="buttomshowpass_1" onclick="mostrarClave_1(this)" class="buttom-show" ><i class="bi bi-eye-slash"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        @*<div class="input-group" style="display:flex">
+                                            <input type="password" id="ps_edit_dos" validationpass="false" class="form-control" maxlength="50" required autocomplete="current-password" placeholder="Nueva Contraseña" name="nuevacontraseña" onkeypress="return avoidSpaceInput(event)">
+                                            <button id="buttomshowpassedit2" onclick="mostrarClaveEdit2(this)" type="button" class="buttom-show"><i class="fa fa-eye"></i></button>
+                                        </div>
+
+                             
+
+                                        <script>
+
+                                            function mostrarClaveEdit2() {
+
+                                                const el = document.getElementById("buttomshowpassedit2");
+                                                const x = document.getElementById("ps_edit_dos");
+                                                if (x.type === "password") {
+                                                    x.type = "text";
+                                                    el.innerHTML = '<i class="fa fa-eye-slash"></i>';
+                                                } else {
+                                                    x.type = "password";
+                                                    el.innerHTML = '<i class="fa fa-eye"></i>';
+                                                }
+
+                                            }
+
+                                        </script>*@
+
+
+
+
+
+
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+
+                                            </div>
+                                        </div>
+
+                                        <input type="submit" value="Login" id="x_Login" class="btn btn-primary btn-user btn-block" /><br />
+
+                                        <div id="mensaje-alerta">
+                                            @if (TempData["ERROR_LOGIN"] != null)
+                                            {
+                                                <div class="alert alert-danger " role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                    @*<strong>Sistema Tickets</strong>*@ @TempData["ERROR_LOGIN"]
+                                                </div>
+                                            }
+                                        </div>
+
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" hidden>
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" 
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document"  >
+            <div class="modal-content" style="border-radius:12px;">
+                <div class="modal-header  d-flex justify-content-center tit">
+                    <h1 class="modal-title d-flex justify-content-center" id="exampleModalLongTitle">Registrar Licencia</h1>                   
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group  text-left">
+                        <label></label>
+                        <input type="text" value="" id="txt-serial" class="form-control" maxlength="70" required="" 
+                               autocomplete="off" name="" /> 
+                        <h1 class="modal-title d-flex justify-content-center" id="mensaje-valor-respuesta"></h1>
+                    </div>
+
+                <br/>
+
+
+                    <div id="mensaje-alert">
+
+                        @if (TempData["ERROR_LICENCIA"] != null)
+                        {
+                            <div class="alert alert-info " role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                @TempData["ERROR_LICENCIA"]
+                            </div>
+                        }
+                        
+                    </div>                 
+
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center" style="text-align:center;">
+                    <button type="button" class="btn btn-success" id="btn-registrar">REGISTRAR</button>
+                    <button type="button" class="btn btn-primary" id="btn-cancelar" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn btn-success" id="btn-ok" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .tit {
+            font-size: 30px;
+            text-align: center;
+            font-weight: 600;
+            font-family: Arial;            
+            margin-top: 40px;
+            color:black;
+        }
+
+    </style>
+
+
+    <script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/assets/js/lgnew.js"></script>  @*añadido 15.06.2021*@
+
+    <!-- scripts -->
+    <script src="~/Content/assets/js/jquery.js"></script>
+    <script src="~/Content/assets/js/vendors/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/assets/js/vendors/jquery.sparkline.min.js"></script>   
+    <script src="~/Content/assets/js/vendors/selectize.min.js"></script>
+    <script src="~/Content/assets/js/vendors/jquery.tablesorter.min.js"></script>
+    <script src="~/Content/assets/js/vendors/circle-progress.min.js"></script>
+    <script src="~/Content/assets/plugins/datapicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/assets/plugins/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/Content/assets/plugins/datatables/js/dataTables.fixedHeader.js"></script>
+    <script src="~/Content/assets/plugins/datatables/js/dataTables.responsive.js"></script>
+    <script src="~/Content/assets/plugins/datatables/js/responsive.bootstrap.js"></script>
+    <script src="~/Content/assets/plugins/ambiance/js/jquery.ambiance.js"></script>
+    <script src="~/Content/assets/plugins/blockUI/jquery.blockUI.js"></script>
+    <script src="~/Content/assets/js/vendors/jquery-confirm.js"></script>
+    @*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+    <script src="~/Scripts/loginLicencia.js"></script>
+
+
+
+
+</body>
+
+
+
+
+
+
+</html>
+
+
+<script>
+
+    function mostrarClave_1() {
+
+        const el = document.getElementById("buttomshowpass_1");
+        const x = document.getElementById("id_Password");
+        if (x.type === "password") {
+            x.type = "text";
+            el.innerHTML = '<i class="bi bi-eye-slash"></i>';
+            $("#id_Password").toggleClass("fa-eye fa-eye-slash");
+        } else {
+            x.type = "password";
+            el.innerHTML = '<i class="bi bi-eye"></i>';
+        }
+
+    }
+    function mostrarClave_2() {
+
+        const el = document.getElementById("buttomshowpass_2");
+        const x = document.getElementById("txtpwd2");
+        if (x.type === "password") {
+            x.type = "text";
+            el.innerHTML = '<i class="bi bi-eye-slash"></i>';
+        } else {
+            x.type = "password";
+            el.innerHTML = '<i class="bi bi-eye"></i>';
+        }
+
+    }
+
+    $('#id_Password').bind('input', function () {
+        var current = $('#id_Password').val();
+        var newData = current.replace("x", "");
+        newData = newData.replace("x", ""); // small x if you want
+        $('#id_Password').val(newData);
+    });
+
+
+    //$("body").on('click', '.toggle-password', function () {
+    //    $(this).toggleClass("fa-eye fa-eye-slash");
+    //    var input = $("#pass_log_id");
+    //    if (input.attr("type") === "password") {
+    //        input.attr("type", "text");
+    //    } else {
+    //        input.attr("type", "password");
+    //    }
+
+    //});
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('#id_Password').bind('input', function () {
+        //    var current = $('#id_Password').val();
+        //    var newData = current.replace("X", "");
+        //    newData = newData.replace("x", ""); // small x if you want
+        //    $('#id_Password').val(newData);
+        //});
+    });
+</script>
+

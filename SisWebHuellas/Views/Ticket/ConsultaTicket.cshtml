@@ -1,0 +1,300 @@
+﻿@using Dominio.Entidades
+@model IEnumerable<Dominio.Entidades.TicketEN>
+
+@{
+    ViewBag.Title = "Consultar Ticket";
+}
+
+@{
+    UsuarioEN objUsuario = new UsuarioEN();
+    objUsuario = (UsuarioEN)Session["USUARIO"];
+
+    string disabled = "";
+    string disabledNuevo = "";
+    if (objUsuario.rol.IdRol != 1)
+    {
+        disabled = "pointer-events:none";
+    }
+    if (objUsuario.rol.IdRol == 3)
+    {
+        disabledNuevo = "pointer-events:none";
+    }
+
+    string fechaInicio = DateTime.Now.ToShortDateString();
+    string fechaFin = DateTime.Now.ToShortDateString();
+
+    if (Session["FECHAS_MEMORY"] != null)
+    {
+        string fechasMemory = Session["FECHAS_MEMORY"].ToString();
+        string[] fechas = fechasMemory.Split(',');
+        fechaInicio = fechas[0];
+        fechaFin = fechas[1];
+
+    }
+
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="col-md-3">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <input type="number" name="nroTck" class="form-control has-feedback-left" id="txt-Nro" placeholder="Nro Ticket">
+                    <span class="fa fa-ticket form-control-feedback left" aria-hidden="true"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Desde</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                                    <input type="text" class="form-control has-feedback-left" id="single_cal1" value="@fechaInicio" name="fechaInicio">
+                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                    <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Hasta</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                                    <input type="text" class="form-control has-feedback-left" id="single_cal2" value="@fechaFin" name="fechaFin">
+                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                    <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger" id="btn-buscar-tck"><i class="fa fa-search"></i></button>
+                    @*</form>*@
+                    <a class=" btn btn-default" href="@Url.Action("Nuevo_Ticket")" style="@disabledNuevo"><i class="fa fa-plus"></i> &nbsp; Nuevo Ticket</a> <!-- data-toggle="modal" data-target="#bd-example-modal-lg" -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- alerta de transacción -->
+<div class="row">
+    @if (TempData["RESPUESTA"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <strong>Sistema Tickets! </strong> @TempData["RESPUESTA"]
+        </div>
+    }
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <h3>Consulta de Ticket</h3>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 ">
+                    @if (ViewBag.AREA != null)
+                    {
+                        @Html.DropDownList("cboArea", (SelectList)ViewBag.AREA, "Filtrar por Area...", new { @class = "form-control" })
+                    }
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-12"><br /></div>
+                <div class="col-md-3 col-sm-3 col-xs-12 ">
+                    @Html.DropDownList("cboEstado", (SelectList)ViewBag.ESTADO, "Filtrar por estado....", new { @class = "form-control" })
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <p class="text-muted font-13 m-b-30" style="margin-top:-8px;">
+                    Prioridad: 
+                    Baja:( <span class=""> <i class="fa fa-long-arrow-down" style="color:#00FF00;font-weight:bold"></i></span> )
+                    Media:( <span class=""> <i class="fa fa-arrows-h" style="color:#0070C0;font-weight:bold"></i></span> )
+                    Alta:( <span class=""> <i class="fa fa-long-arrow-up" style="color:#FF0000;font-weight:bold"></i></span> )
+                </p>
+                <div class="table-responsive" id="content-dataTable">
+
+                    <table id="dtb-tickets" class="table table table-bordered">
+                        <thead>
+                            <tr class="headings">
+                                <th style="width:5%;" class="column-title">Nro</th>
+                                <th style="width:10%;" class="column-title">Empresa</th>
+                                <th style="width:5%;" class="column-title">F.Inicio</th>
+                                <th style="width:5%;" class="column-title">F.Fin</th>
+                                <th style="width:5%;" class="column-title">T.Duración</th>
+                                <th style="width:8%;" class="column-title">Responsable</th>
+                                <th style="width:8%;" class="column-title">Motivo</th>
+                                <th style="width:28%;" class="column-title">Descripción</th>
+                                <th style="width:8%;" class="column-title">Estado</th>
+                                <th style="width:8%;" class="column-title">Progreso</th>
+                                <th style="width:10%;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                string icono = "";
+                                string back_color = "";
+
+                                if (item.detalle.prioridad.IdPrio == 1)
+                                {
+                                    icono = "fa fa-long-arrow-down";
+                                    back_color = "#00FF00";
+                                }
+                                else if (item.detalle.prioridad.IdPrio == 2)
+                                {
+                                    icono = "fa fa-arrows-h";
+                                    back_color = "#0070C0";
+                                }
+                                else if (item.detalle.prioridad.IdPrio == 3)
+                                {
+                                    icono = "fa fa-long-arrow-up";
+                                    back_color = "#FF0000";
+                                }
+
+                                string cantSoporte = "Cant. Soporte: " + item.cantSoporte;
+
+                                <tr id="@item.Nro">
+                                    <td data-toggle="tooltip" data-placement="left" title="@cantSoporte">
+                                        @Html.DisplayFor(modelItem => item.Nro)
+                                        <span class=""> <i class="@icono" style="color:@back_color;font-weight:bold"></i></span>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.empresa)
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(modelItem => item.fechaInicio, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(modelItem => item.fechaFin, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TiempoDuracion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.detalle.encargado.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.motivo.DescMotivo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.detalle.descripcion)
+                                    </td>
+                                    <td>
+                                        @{
+                                            string colorStatus = "";
+                                            if (item.detalle.estado.IdEstado == 1)
+                                            {
+                                                colorStatus = "bg-open-status";
+                                            }
+                                            else if (item.detalle.estado.IdEstado == 2)
+                                            {
+                                                colorStatus = "bg-pending-status";
+                                            }
+                                            else if (item.detalle.estado.IdEstado == 3)
+                                            {
+                                                colorStatus = "bg-solved-status";
+                                            }
+                                            else if (item.detalle.estado.IdEstado == 4)
+                                            {
+                                                colorStatus = "bg-closed-status";
+                                            }
+                                            <span class="icon"><i class="fa fa-circle @colorStatus"></i></span>
+                                        }
+                                        @Html.DisplayFor(modelItem => item.detalle.estado.DesEstado)
+                                    </td>
+                                    <td class="project_progress">
+                                        @{ string color = "";
+                                            if (item.detalle.estado.IdEstado == 1)
+                                            {
+                                                color = "bg-open";
+                                            }
+                                            else if (item.detalle.estado.IdEstado == 2)
+                                            {
+                                                color = "bg-pending";
+                                            }
+                                            else if (item.detalle.estado.IdEstado == 3)
+                                            {
+                                                color = "bg-solved";
+                                            }
+                                            else if (item.detalle.estado.IdEstado == 4)
+                                            {
+                                                color = "bg-closed";
+                                            }
+
+                                        }
+                                        <div class="progress progress_sm">
+                                            <div class="progress-bar @color" role="progressbar" data-transitiongoal="@item.detalle.progreso"></div>
+                                        </div>
+                                        <small>@item.detalle.progreso % Complete</small>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Editar_Ticket",new { id=item.Nro})" class="btn btn-dark btn-xs"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a href="#" class="btn btn-danger btn-xs" data-toggle='modal' data-target='.bd-confirm-modal-sm' onclick="confirElimina(@item.Nro)" style="@disabled"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--small modal eliminar ticket-->
+<div class="modal bd-confirm-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="fm-modal-delete">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Sistema Control de Tickets</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="" id="id-del-Codigo">
+                <div class="alert alert-danger dialog-content"></div>
+                <div class="col-md-12 col-sm-12 col-xs-12 center-margin">                    
+                    <div class="form-group">
+                        <label>Motivo</label>
+                        <input type="text" id="txt-motivo-elimina" class="form-control"/>
+                    </div>                    
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
+                <button type="button" class="btn btn-danger" id="btn-elimina-tck">Eliminar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

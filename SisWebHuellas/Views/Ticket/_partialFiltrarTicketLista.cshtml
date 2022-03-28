@@ -1,0 +1,142 @@
+﻿@using SisWebHuellas.srvHuellas;
+@model IEnumerable<Dominio.Entidades.TicketEN>
+
+@{
+    ZKLogin objUsuario = new ZKLogin();
+    objUsuario = (ZKLogin)Session["USUARIO"];
+
+    string disabled = "";
+    //if (objUsuario.rol.IdRol != 1)
+    //{
+    //    disabled = "pointer-events:none";
+    //}
+}
+@if (Model.Count() > 0)
+{
+    <table id="dtb-tickets" class="table table table-bordered">
+        <thead>
+            <tr class="headings">
+                <th style="width:5%;" class="column-title">Nro</th>
+                <th style="width:10%;" class="column-title">Empresa</th>
+                <th style="width:5%;" class="column-title">F.Inicio</th>
+                <th style="width:5%;" class="column-title">F.Fin</th>
+                <th style="width:5%;" class="column-title">T.Duración</th>
+                <th style="width:8%;" class="column-title">Responsable</th>
+                <th style="width:8%;" class="column-title">Motivo</th>
+                <th style="width:28%;" class="column-title">Descripción</th>
+                <th style="width:8%;" class="column-title">Estado</th>
+                <th style="width:8%;" class="column-title">Progreso</th>
+                <th style="width:10%;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string icono = "";
+                string back_color = "";
+
+                if (item.detalle.prioridad.IdPrio == 1)
+                {
+                    icono = "fa fa-long-arrow-down";
+                    back_color = "#00FF00";
+                }
+                else if (item.detalle.prioridad.IdPrio == 2)
+                {
+                    icono = "fa fa-arrows-h";
+                    back_color = "#0070C0";
+                }
+                else if (item.detalle.prioridad.IdPrio == 3)
+                {
+                    icono = "fa fa-long-arrow-up";
+                    back_color = "#FF0000";
+                }
+
+                string cantSoporte = "Cant. Soporte: " + item.cantSoporte;
+
+                <tr id="@item.Nro">
+                    <td data-toggle="tooltip" data-placement="left" title="@cantSoporte">
+                        @Html.DisplayFor(modelItem => item.Nro)
+                        <span class=""> <i class="@icono" style="color:@back_color;font-weight:bold"></i></span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.empresa)
+                    </td>
+                    <td>
+                        @Html.ValueFor(modelItem => item.fechaInicio, "{0:dd/MM/yyyy}")
+                    </td>
+                    <td>
+                        @Html.ValueFor(modelItem => item.fechaFin, "{0:dd/MM/yyyy}")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TiempoDuracion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.detalle.encargado.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.motivo.DescMotivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.detalle.descripcion)
+                    </td>
+                    <td>
+                        @{
+                            string colorStatus = "";
+                            if (item.detalle.estado.IdEstado == 1)
+                            {
+                                colorStatus = "bg-open-status";
+                            }
+                            else if (item.detalle.estado.IdEstado == 2)
+                            {
+                                colorStatus = "bg-pending-status";
+                            }
+                            else if (item.detalle.estado.IdEstado == 3)
+                            {
+                                colorStatus = "bg-solved-status";
+                            }
+                            else if (item.detalle.estado.IdEstado == 4)
+                            {
+                                colorStatus = "bg-closed-status";
+                            }
+                            <span class="icon"><i class="fa fa-circle @colorStatus"></i></span>
+                        }
+                        @Html.DisplayFor(modelItem => item.detalle.estado.DesEstado)
+                    </td>
+                    <td class="project_progress">
+                        @{ string color = "";
+                            if (item.detalle.estado.IdEstado == 1)
+                            {
+                                color = "bg-open";
+                            }
+                            else if (item.detalle.estado.IdEstado == 2)
+                            {
+                                color = "bg-pending";
+                            }
+                            else if (item.detalle.estado.IdEstado == 3)
+                            {
+                                color = "bg-solved";
+                            }
+                            else if (item.detalle.estado.IdEstado == 4)
+                            {
+                                color = "bg-closed";
+                            }
+
+                        }
+                        <div class="progress progress_sm">
+                            <div class="progress-bar @color" role="progressbar" data-transitiongoal="@item.detalle.progreso"></div>
+                        </div>
+                        <small>@item.detalle.progreso % Complete</small>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Editar_Ticket",new { id=item.Nro})" class="btn btn-dark btn-xs"><i class="fa fa-pencil"></i> Editar</a>
+                        <a href="#" class="btn btn-danger btn-xs" data-toggle='modal' data-target='.bd-confirm-modal-sm' onclick="confirElimina(@item.Nro)" style="@disabled"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>empty</p>
+}

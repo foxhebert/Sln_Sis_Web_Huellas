@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="03479e04-8d15-4ad7-8117-b59ac44eb26b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/SisWsHuellas/ws_HuellasWeb.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ws_HuellasWeb.xsd" MetadataType="Schema" ID="c1d975b4-09cd-4885-8037-8d7a09b667ef" SourceId="1" SourceUrl="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd1" />
+    <MetadataFile FileName="ws_HuellasWeb1.xsd" MetadataType="Schema" ID="933c3788-e519-4b2a-814c-b7b8ce1be8e1" SourceId="1" SourceUrl="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd3" />
+    <MetadataFile FileName="ws_HuellasWeb.disco" MetadataType="Disco" ID="4b0deac0-150e-4d16-9e6f-8aa8f4cbaa9e" SourceId="1" SourceUrl="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?disco" />
+    <MetadataFile FileName="ws_HuellasWeb.wsdl" MetadataType="Wsdl" ID="6bf39605-57ea-4c87-add3-029c9ff050ac" SourceId="1" SourceUrl="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?wsdl" />
+    <MetadataFile FileName="ws_HuellasWeb2.xsd" MetadataType="Schema" ID="71e8ddae-dbb5-4613-9406-c804e5e995ea" SourceId="1" SourceUrl="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd2" />
+    <MetadataFile FileName="ws_HuellasWeb3.xsd" MetadataType="Schema" ID="9d38c45e-3fb4-4a39-8bb2-8b98c6df9540" SourceId="1" SourceUrl="http://localhost/SisWsHuellas/ws_HuellasWeb.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

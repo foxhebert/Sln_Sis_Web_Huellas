@@ -1,0 +1,161 @@
+﻿@*@model IEnumerable<Dominio.Entidades.Personalizado.ItemAsistencia>*@
+
+@{
+    ViewBag.Title = "ListarAsistencias";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form class="card">
+            <div class="card-header">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <h3 class="card-title">Consulta de Marcaciones</h3>
+                </div>
+            </div>
+            <div class="card-body row">
+                @*<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <div class="form-group">
+                    <label class="form-label col-form-label">Desde</label>
+                    </div>
+                </div>*@
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="form-label col-form-label">Desde</label>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group ">
+                                <input type="text" name="field-name" class="form-control datepicker" style="text-align:center;"
+                                       data-mask="00/00/0000" id="date_1" maxlength="10"
+                                       data-mask-clearifnotmatch="true" placeholder="DD/MM/YYYY" onkeypress="validarControlesFecha(event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    
+               
+
+                </div>
+
+                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+
+
+                    <label class="form-label">&nbsp;</label>
+                </div>
+
+
+                <div class="col-lg-2 col-md-1 col-sm-1 col-xs-1">
+                @*<div class="form-group "><label class="form-label col-form-label">Hasta</label>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="form-group">
+                        <input type="text" name="field-name" class="form-control  datepicker" data-mask="DD/MM/YYYY" id="date_2" maxlength="10"  style="text-align:center;"
+                               data-mask-clearifnotmatch="true" placeholder="DD/MM/YYYY"  onkeypress = "validarControlesFecha(event)"/>
+                    </div>*@
+
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label col-form-label">Hasta</label>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <input type="text" name="field-name" class="form-control  datepicker" data-mask="DD/MM/YYYY" id="date_2" maxlength="10" style="text-align:center;"
+                                   data-mask-clearifnotmatch="true" placeholder="DD/MM/YYYY" onkeypress="validarControlesFecha(event)" />
+                        </div>
+                    </div>
+                </div>
+           
+                </div>
+
+
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="form-group">
+                        <div class="btn-list">
+                            <a class="btn btn-icon btn-primary btn-danger" id="btn-filtrar-marcas" style="color:white" title="Consultar Marcas" >
+                                <i class="fe fe-search"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+
+                @*<div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                    <h3 class="card-title">Listado de Marcaciones</h3>
+                </div>
+                <div class="col-md-3 col-sm-2 col-xs-12 ">
+                    <label style="margin-left:150px; margin-bottom:3px;">Estado de Personal: </label>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-12 ">
+                    <label >Estado de Personal: </label>
+                    <select class="form-control" id="cboEstadoPerso" name="cboEstadoPerso">
+                        <option value="1">Activos</option>
+                        <option value="0">Inactivos</option>
+                        <option value="2">Todos</option>
+                    </select>
+                </div>*@
+
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">                         
+                            <h3 style="padding-top:10px;" class="card-title">Listado de Marcaciones</h3>
+                        </div>
+                        <div class="col-md-auto">
+                                <label style="margin-right: -5px; padding-top:10px;" >Estado de Personal: </label>
+                        </div>
+                        <div class="col col-lg-2">
+                        
+                            <select class="form-control" id="cboEstadoPerso" name="cboEstadoPerso">
+                                <option value="1">Activos</option>
+                                <option value="0">Inactivos</option>
+                                <option value="2">Todos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div class="table-responsive" id="marcas-asistencia-table" style="padding-right :10px;">
+                <table class="table card-table table-hover table-vcenter datatable-marca dt-perso">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="width:10%"><div style="width:50px !important">Código</div></th>
+                            <th style="width:10%"><div style="width:65px !important">Fecha</div></th>
+                            <th style="width:10%"><div style="width:60px !important">Hora</div></th>
+                            <th style="width:100%"><div> Personal</div></th>
+                            <th style="width:10%"><div style="width:76px !important;">Nro Tarjeta</div></th>
+                            <th style="width:10%"><div style="width:120px !important;">Dispositivo</div></th>
+                            <th style="width:10%"><div style="width:85px !important;">Cant. Huellas</div></th>
+                            <th style="width:10%"><div style="width:90px !important;">Huella Reg</div></th>
+                            @*    <th style="width:10%"><div style="width:60px !important;">Sede</div></th>*@
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

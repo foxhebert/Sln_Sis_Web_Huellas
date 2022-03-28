@@ -1,0 +1,436 @@
+﻿@using Dominio.Entidades
+@model IEnumerable<Dominio.Entidades.TicketEN>
+
+
+@{
+    ViewBag.Title = "Editar_Ticket";
+}
+
+@{
+    UsuarioEN objUsuario = new UsuarioEN();
+    objUsuario = (UsuarioEN)Session["USUARIO"];
+
+    int indice = 1;
+    string idEdit = "";
+    string disabledNuevoSoporte = "";
+
+    if (objUsuario.rol.IdRol != 1)
+    { idEdit = "div-not-edit"; }
+
+    if (objUsuario.rol.IdRol == 3)
+    {
+        disabledNuevoSoporte = "pointer-events:none";
+    }
+
+}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            @*<div class="x_title">
+                    <h2>Gestión del Ticket</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>*@
+            <div class="x_content">
+                <!--inicio formulario-->
+                <div id="wizard" class="form_wizard wizard_horizontal">
+                    <ul class="wizard_steps">
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            TicketEN item = new TicketEN();
+                            item = Model.ElementAt(i);
+
+                            if (item.detalle.Id == 0)
+                            {
+                                <li>
+                                    <a href="#step-@item.detalle.Id">
+                                        <span class="step_no">Tck</span>
+                                        <span class="step_descr">
+                                            Ticket Nro @item.Nro<br />
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="#step-@item.detalle.Id">
+                                        <span class="step_no">@item.detalle.Id</span>
+                                        <span class="step_descr">
+                                            Soporte @item.detalle.Id<br />
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+
+                        }
+
+                    </ul>
+                    <!-- paso 1-->
+                    @*@{int indice = 1; string idEdit = "";}*@
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        TicketEN objT = new TicketEN();
+                        objT = Model.ElementAt(i);
+                        int idSoporte = Model.Count() > 1 ? objT.detalle.Id - 1 : objT.detalle.Id;
+
+                        <div id="step-@objT.detalle.Id">
+                            <form id="" class="form-horizontal form-label-left" action="/Ticket/Editar_Ticket" method="post" enctype="multipart/form-data" onsubmit="return maxSizeIMG_PDF()">
+                                <!-- parte izquierda del formulario -->
+                                @*@if (objUsuario.IdRol!=1 && objT.detalle.flgSoporte==1) { idEdit = "div-not-edit"; }*@
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="@idEdit">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for=""> Nro Ticket </label>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                @Html.HiddenFor(model => objT.detalle.Id)
+                                                @Html.EditorFor(model => objT.Nro, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                @Html.ValidationMessageFor(model => objT.Nro, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for=""> Fecha de Registro </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class='input-group date' id='myDatepicker2'>
+                                                    @Html.EditorFor(model => objT.detalle.FechaRegistro, new { htmlAttributes = new { @class = "form-control" } })
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => objT.detalle.FechaRegistro, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Hora de Registro</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class='input-group date' id='myDatepicker3'>
+                                                    @Html.EditorFor(model => objT.detalle.horaRegistro, new { htmlAttributes = new { @class = "form-control" } })
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-time"></span>
+                                                    </span>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => objT.detalle.horaRegistro, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Contacto </label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.EditorFor(model => objT.contacto, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => objT.contacto, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Empresa</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.EditorFor(model => objT.empresa, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => objT.empresa, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Motivo</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.DropDownListFor(model => objT.motivo.IdMotivo, new SelectList(ViewBag.MOTIVO as IEnumerable<MotivoEN>, "IdMotivo", "DescMotivo", objT.motivo.IdMotivo), new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => objT.motivo.IdMotivo, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Prioridad</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.DropDownListFor(model => objT.detalle.prioridad.IdPrio, new SelectList(ViewBag.PRIORIDAD as IEnumerable<PrioridadEN>, "IdPrio", "DesPrio", objT.detalle.prioridad.IdPrio), new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => objT.detalle.prioridad.IdPrio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Responsable</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.DropDownListFor(model => objT.detalle.encargado.IdEnc, new SelectList(ViewBag.ASIGNAR as IEnumerable<EncargadoEN>, "IdEnc", "Nombre", objT.detalle.encargado.IdEnc), new { @class = "form-control cbo-asignar" })
+                                            @Html.ValidationMessageFor(model => objT.detalle.encargado.IdEnc, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    @if (objT.detalle.flgSoporte == 0)
+                                    {
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Adjunto</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="input-group">
+                                                    @if (objT.detalle.adjunto != null)
+                                                    {
+                                                        @Html.EditorFor(model => objT.detalle.adjunto, new { htmlAttributes = new { @class = "form-control" } })
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-primary" data-toggle="modal" data-target="#modal-image" id="abrir-imagen" onclick="corouselImage('@objT.detalle.adjunto')">Ver Imagen</a>
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="file" name="objT.detalle.adjunto" style="display:none" multiple data-max-size="3000000">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="browse-btn btn btn-primary" disabled>Browse..</button>
+                                                        </span>
+                                                        <input type="text" class="file-info form-control" readonly>
+
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group">
+                                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Capturas</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="input-group">
+
+                                                    <input type="file" name="file" id="real-input" style="display:none" multiple="multiple" data-max-size="3000000" accept=".gif,.jpg,.jpeg,.png">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="browse-btn btn btn-primary" data-toggle="tooltip" data-placement="left" title="puedes agregar más de una imagen">Browse..</button>
+                                                    </span>
+                                                    <input type="text" class="file-info form-control" readonly>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextAreaFor(model => objT.detalle.descripcion, 4, 1, htmlAttributes: new { style = "width: 100%; max-width: 100%;", @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => objT.detalle.descripcion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- parte derecha del formulario -->
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @if (objT.detalle.Id != 0)
+                                    {
+
+                                        if (objT.detalle.flgSoporte == 1)
+                                        {
+                                            <div class="form-group" id="form-group-pdf">
+                                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Guía de servicio</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <div class="input-group">
+
+                                                        <input type="file" name="file" id="input-pdf" style="display:none" multiple="multiple" data-max-size="3000000" accept=".pdf">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-primary btn-sel-pdf" data-toggle="tooltip" data-placement="left" title="puedes agregar más de un .pdf"><i class="fa fa-file-pdf-o"></i> Agregar</button>
+                                                        </span>
+                                                        <input type="text" class="form-control txt-files-selected" readonly>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            if (objT.detalle.GuiaServicio != null)
+                                            {
+                                                <div class="form-group">
+                                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Guía de servicio</label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                        <div class="input-group">
+                                                            @Html.EditorFor(model => objT.detalle.GuiaServicio, new { htmlAttributes = new { @class = "form-control" } })
+                                                            <span class="input-group-btn">
+                                                                <a class="btn btn-primary" data-toggle="modal" data-target="#modal-pdf" onclick="cargarPdf('@objT.detalle.GuiaServicio')"><i class="fa fa-eye"></i> PDF</a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                        <div class="form-group">
+                                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Avance</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.DropDownListFor(model => objT.detalle.progreso, new SelectList(ViewBag.AVANCE as IEnumerable<int>, objT.detalle.progreso), new { @class = "form-control cbo-progreso" })
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                @if (objT.detalle.progreso == 100)
+                                                {
+                                                    <div style="text-align: center; margin-bottom: 17px;">
+                                                        <span class="chart-complete" data-percent="@objT.detalle.progreso">
+                                                            <span class="percent"></span>
+                                                        </span>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div style="text-align: center; margin-bottom: 17px;">
+                                                        <span class="chart" data-percent="@objT.detalle.progreso">
+                                                            <span class="percent"></span>
+                                                        </span>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                                                            
+
+                                        <div class="form-group">
+                                            <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Estado</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.DropDownListFor(model => objT.detalle.estado.IdEstado, new SelectList(ViewBag.ESTADO as IEnumerable<EstadoEN>, "IdEstado", "DesEstado", objT.detalle.estado.IdEstado), new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => objT.detalle.estado.IdEstado, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Respuesta</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.TextAreaFor(model => objT.detalle.respuesta, 5, 1, htmlAttributes: new { style = "width: 100%; max-width: 100%;", @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => objT.detalle.respuesta, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-8">
+                                            @Html.ActionLink("Cancelar", "ConsultaTicket", null, new { @class = "btn btn-default" })
+                                            @if (Model.Count() == indice && objT.detalle.flgSoporte == 0 && objT.detalle.estado.IdEstado < 4)
+                                            {
+                                                
+                                                <a href="@Url.Action("Editar_Ticket",new { id=objT.Nro,add=true})" class="btn btn-primary" style="@disabledNuevoSoporte"><i class="fa fa-plus"></i> Soporte</a>
+                                            }
+                                            else
+                                            {
+                                                if (objT.detalle.flgSoporte == 1)
+                                                {
+                                                    <button type="submit" class="btn btn-danger">Registrar</button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="submit" class="btn btn-danger" disabled>Registrar</button>
+                                                }
+
+                                            }
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+
+                        indice += 1;
+                    }
+
+                </div>
+                <!--fin formulario-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- modal -->
+<div class="modal " tabindex="-1" role="dialog" id="modal-image">
+    <div class="modal-dialog modal-lg" role="">
+        <div class="">
+            <div class="">
+                <!--<h5 class="modal-title">Imágenes de referencia</h5>-->
+                <button type="button" class="close-custom" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div><br /><br />
+            <div class="">
+                <div class="" id="galeria-id" style="width:100%">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal " tabindex="-1" role="dialog" id="modal-pdf">
+    <div class="modal-dialog modal-lg" role="">
+        <div class="">
+            <div class="">
+                <h5 class="modal-title-custom">Guía de Servicio</h5>
+                <div class="btn-group" id="grupo-pdf">
+
+                </div>
+                <button type="button" class="close-custom" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div><br />
+            <div class="">
+                <div class="" id="pdf-carga" style="align-content:center">
+
+
+                </div>
+
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    //impedir la modificacion de ciertos controles por el tipo de usuario
+    $('.div-not-edit').find('input, textarea, button,select').attr('readonly', 'readonly');
+    $('.div-not-edit select option:not(:selected)').attr('disabled', true);
+
+
+    $('.btn-sel-pdf').click(() => {
+        $('#input-pdf').click();
+    });
+
+    $('#input-pdf').change(() => {
+        var cant = $('#input-pdf').get(0).files.length;
+
+        if (cant > 1) {
+            $('.txt-files-selected').val(cant + ' archivos seleccionados');
+        } else {
+            $('.txt-files-selected').val($('#input-pdf').get(0).files[0].name);
+        }
+    });
+
+    $('.browse-btn').click(() => {
+        $('#real-input').click();
+    });
+
+    $('#real-input').change(() => {
+        var cant = $('#real-input').get(0).files.length;
+
+        if (cant > 1) {
+            $('.file-info').val(cant + ' archivos seleccionados');
+        } else {
+            $('.file-info').val($('#real-input').get(0).files[0].name);
+        }
+    });
+
+
+    if ('@ViewBag.MENSAJE' != "") {
+
+        alert('@ViewBag.MENSAJE');
+    }
+
+</script>

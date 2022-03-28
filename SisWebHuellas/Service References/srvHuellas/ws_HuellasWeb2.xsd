@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Dominio.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Dominio.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ZKUsuarios">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iIdUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="iCodUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="sNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="iPrivilegio" type="xs:int" />
+      <xs:element minOccurs="0" name="CardNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="dFechaHora" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Cod_Personal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="iCambioNumero" type="xs:int" />
+      <xs:element minOccurs="0" name="Estado" type="xs:int" />
+      <xs:element minOccurs="0" name="iModoverificacion" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdArea" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdGrupo" type="xs:int" />
+      <xs:element minOccurs="0" name="strCoUsuarAnt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Privilegio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumHuellas" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumRostros" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strDeArea" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strDeGrupo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strEstado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Huellas" nillable="true" type="tns:ArrayOfZKHuellas" />
+      <xs:element minOccurs="0" name="iIdSede" type="xs:int" />
+      <xs:element minOccurs="0" name="strDedos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strSede" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZKUsuarios" nillable="true" type="tns:ZKUsuarios" />
+  <xs:complexType name="ArrayOfZKHuellas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZKHuellas" nillable="true" type="tns:ZKHuellas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZKHuellas" nillable="true" type="tns:ArrayOfZKHuellas" />
+  <xs:complexType name="ZKHuellas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iIdHuella" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="iFingerNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Huella" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nLngHuella" type="xs:int" />
+      <xs:element minOccurs="0" name="dFechaHora" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ifingernumberzk5000" type="xs:int" />
+      <xs:element minOccurs="0" name="Huella10" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nLngHuella10" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZKHuellas" nillable="true" type="tns:ZKHuellas" />
+  <xs:complexType name="ListItemPersonaExport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemPersonaExport" nillable="true" type="tns:ItemPersonaExport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItemPersonaExport" nillable="true" type="tns:ListItemPersonaExport" />
+  <xs:complexType name="ItemPersonaExport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPersonal" type="xs:int" />
+      <xs:element minOccurs="0" name="strNombres" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bitActivo" type="xs:int" />
+      <xs:element minOccurs="0" name="intIdSede" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemPersonaExport" nillable="true" type="tns:ItemPersonaExport" />
+  <xs:complexType name="ListItemHuellaExport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemHuellaExport" nillable="true" type="tns:ItemHuellaExport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItemHuellaExport" nillable="true" type="tns:ListItemHuellaExport" />
+  <xs:complexType name="ItemHuellaExport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPersonal" type="xs:int" />
+      <xs:element minOccurs="0" name="intNumDedo" type="xs:int" />
+      <xs:element minOccurs="0" name="Huella" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemHuellaExport" nillable="true" type="tns:ItemHuellaExport" />
+  <xs:complexType name="ListItemMarcaImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemMarcaImport" nillable="true" type="tns:ItemMarcaImport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItemMarcaImport" nillable="true" type="tns:ListItemMarcaImport" />
+  <xs:complexType name="ItemMarcaImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPersonal" type="xs:int" />
+      <xs:element minOccurs="0" name="intNumDedo" type="xs:int" />
+      <xs:element minOccurs="0" name="dttFechaMarca" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intIdSede" type="xs:int" />
+      <xs:element minOccurs="0" name="strSerie" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemMarcaImport" nillable="true" type="tns:ItemMarcaImport" />
+  <xs:complexType name="ListItemPersonaImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemPersonaImport" nillable="true" type="tns:ItemPersonaImport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItemPersonaImport" nillable="true" type="tns:ListItemPersonaImport" />
+  <xs:complexType name="ItemPersonaImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="intCodigo" type="xs:int" />
+      <xs:element minOccurs="0" name="strCodigoPersonal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strNombres" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="intNumTarjeta" type="xs:long" />
+      <xs:element minOccurs="0" name="strSede" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="intLinea" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemPersonaImport" nillable="true" type="tns:ItemPersonaImport" />
+  <xs:complexType name="ListItemErrorCarga">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemErrorCarga" nillable="true" type="tns:ItemErrorCarga" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItemErrorCarga" nillable="true" type="tns:ListItemErrorCarga" />
+  <xs:complexType name="ItemErrorCarga">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="intLinea" type="xs:int" />
+      <xs:element minOccurs="0" name="strRegistro" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strError" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemErrorCarga" nillable="true" type="tns:ItemErrorCarga" />
+  <xs:complexType name="ArrayOfZKUsuarios">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZKUsuarios" nillable="true" type="tns:ZKUsuarios" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZKUsuarios" nillable="true" type="tns:ArrayOfZKUsuarios" />
+  <xs:complexType name="ArrayOfItemCombo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemCombo" nillable="true" type="tns:ItemCombo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemCombo" nillable="true" type="tns:ArrayOfItemCombo" />
+  <xs:complexType name="ItemCombo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Valor" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Texto" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemCombo" nillable="true" type="tns:ItemCombo" />
+  <xs:complexType name="ZKLoginOff">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iIdSesion" type="xs:int" />
+      <xs:element minOccurs="0" name="sNombreSesion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sPasswordSesion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bitFlSist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iPermiso" type="xs:int" />
+      <xs:element minOccurs="0" name="iRestaurado" type="xs:int" />
+      <xs:element minOccurs="0" name="sPermisoMenu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="intIdSede" type="xs:int" />
+      <xs:element minOccurs="0" name="dttFecReg" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intEsAdmin" type="xs:int" />
+      <xs:element minOccurs="0" name="bitFlActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="strSede" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OpcionesMenu" nillable="true" type="tns:ListZKMenu" />
+      <xs:element minOccurs="0" name="OpcionesMenuOff" nillable="true" type="tns:ListZKMenuOff" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZKLoginOff" nillable="true" type="tns:ZKLoginOff" />
+  <xs:complexType name="ListZKMenu">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZKMenu" nillable="true" type="tns:ZKMenu" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListZKMenu" nillable="true" type="tns:ListZKMenu" />
+  <xs:complexType name="ZKMenu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IntAsing" type="xs:int" />
+      <xs:element minOccurs="0" name="IntFlEstad" type="xs:int" />
+      <xs:element minOccurs="0" name="IntIdMenus" type="xs:int" />
+      <xs:element minOccurs="0" name="IntOrden" type="xs:int" />
+      <xs:element minOccurs="0" name="StrAccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrCoMenus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrCoMenusRelac" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrControlador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrDeMenus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrIcono" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrNoFormu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrNoMenus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrVariable" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZKMenu" nillable="true" type="tns:ZKMenu" />
+  <xs:complexType name="ListZKMenuOff">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZKMenuOff" nillable="true" type="tns:ZKMenuOff" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListZKMenuOff" nillable="true" type="tns:ListZKMenuOff" />
+  <xs:complexType name="ZKMenuOff">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IntAsing" type="xs:int" />
+      <xs:element minOccurs="0" name="IntFlEstad" type="xs:int" />
+      <xs:element minOccurs="0" name="IntIdMenus" type="xs:int" />
+      <xs:element minOccurs="0" name="IntOrden" type="xs:int" />
+      <xs:element minOccurs="0" name="StrAccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrCoMenus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrCoMenusRelac" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrControlador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrDeMenus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrIcono" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrNoFormu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrNoMenus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StrVariable" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="iIdSesion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZKMenuOff" nillable="true" type="tns:ZKMenuOff" />
+  <xs:complexType name="ListZKLogin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZKLogin" nillable="true" type="tns:ZKLogin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListZKLogin" nillable="true" type="tns:ListZKLogin" />
+  <xs:complexType name="ZKLogin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iIdSesion" type="xs:int" />
+      <xs:element minOccurs="0" name="sNombreSesion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sPasswordSesion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bitFlSist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iPermiso" type="xs:int" />
+      <xs:element minOccurs="0" name="iRestaurado" type="xs:int" />
+      <xs:element minOccurs="0" name="sPermisoMenu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="intIdSede" type="xs:int" />
+      <xs:element minOccurs="0" name="dttFecReg" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intEsAdmin" type="xs:int" />
+      <xs:element minOccurs="0" name="bitFlActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="strSede" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OpcionesMenu" nillable="true" type="tns:ListZKMenu" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZKLogin" nillable="true" type="tns:ZKLogin" />
+  <xs:complexType name="ListZKLoginOff">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZKLoginOff" nillable="true" type="tns:ZKLoginOff" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListZKLoginOff" nillable="true" type="tns:ListZKLoginOff" />
+  <xs:complexType name="ListZKSede">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZKSede" nillable="true" type="tns:ZKSede" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListZKSede" nillable="true" type="tns:ListZKSede" />
+  <xs:complexType name="ZKSede">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="intIdSede" type="xs:int" />
+      <xs:element minOccurs="0" name="strCoLocal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strDeLocal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strDireccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bitActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="strEstadoActivo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZKSede" nillable="true" type="tns:ZKSede" />
+</xs:schema>

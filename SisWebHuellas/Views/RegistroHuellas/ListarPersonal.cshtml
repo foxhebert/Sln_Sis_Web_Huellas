@@ -1,0 +1,278 @@
+﻿@model IEnumerable<Dominio.Entidades.Personalizado.ItemCombo>
+
+@{
+    ViewBag.Title = "ListarPersonal";
+}
+
+
+
+@*<div class="loader"></div>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(../../images/pageLoader.gif) 50% 50% no-repeat rgb(249,249,249);
+            opacity: .95;
+        }
+    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+        $(window).load(function () {
+            $(".loader").fadeOut("slow");
+            alert(123);
+        });
+
+    </script>*@
+@*<OBJECT style="display:none" classid="" width=0 height=0 id=zkonline></OBJECT>
+<COMMENT style="display:none">
+    <EMBED type="application/x-eskerplus"
+           classid="clsid:A318A9AC-E75F-424C-9364-6B40A848FC6B"
+           codebase="ZKOnline.ocx"
+           width=0 height=0 style="visibility:hidden">
+    </EMBED>
+</COMMENT>*@
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+
+      
+
+                <div class="col-lg-8 col-md-8 col-sm-8 ">
+                    <h3 style="" class="card-title">Listado de Personal</h3>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4   form-inline">
+
+                    <label style="margin-left: 10px; padding-top:1px; float:right;">Estado de Personal: </label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <select class="form-control col-md-5 " id="cboEstadoPersoList" name="cboEstadoPerso" style="float:right;">
+                        <option value="1">Activos</option>
+                        <option value="0">Inactivos</option>
+                        <option value="2">Todos</option>
+                    </select>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <a class="btn btn-icon btn-success" id="btn-nuev-pers" title="Nuevo Personal" style="color:white;float:right;" data>
+                        <i class="fe fe-user-plus"></i>
+                    </a>
+
+                </div>
+
+   
+                <div class="container" hidden>
+                    <div class="row">
+                        <div class="col" style="width:70%;"><h3 style="" class="card-title11">Listado de Personal</h3></div>                 
+      
+                        <div class="col form-group" style="width:20%;">
+                            <div style="float:right;">
+                                <label style="display: inline-block;"> Estado de Personal : &nbsp;&nbsp;&nbsp;</label>
+                                <div style="display: inline-block;" id="select-categories">
+                                    <div style="margin-top:5px;">
+                                        <select class="form-control" id="cboEstadoPersoList11" name="cboEstadoPerso11" style="margin-top:0px;">
+                                            <option value="1">Activos</option>
+                                            <option value="0">Inactivos</option>
+                                            <option value="2">Todos</option>
+                                        </select>
+
+                                    </div>
+                                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div style="display: inline-block;">
+                                    <a class="btn btn-icon btn-success" id="btn-nuev-pers" title="Nuevo Personal" style="color:white" data>
+                                        <i class="fe fe-user-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                 
+                    </div>
+                </div>
+
+                <div class="container" hidden>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <h3 style="padding-top:10px;" class="card-title">Listado de Personal</h3>
+                        </div>
+
+                        <div class="col-md-auto">
+                            <label style="margin-right: -5px; padding-top:10px;">Estado de Personal: </label>
+                        </div>
+
+                        <div class="col col-lg-2">
+                            <select class="form-control" id="cboEstadoPersoList" name="cboEstadoPerso">
+                                <option value="1">Activos</option>
+                                <option value="0">Inactivos</option>
+                                <option value="2">Todos</option>
+                            </select>
+                        </div>
+
+                        <div class="col col-lg-2">
+                            <a class="btn btn-icon btn-success" id="btn-nuev-pers" title="Nuevo Personal" style="color:white" data>
+                            <i class="fe fe-user-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="table-responsive" id="pedido-cabecera-table" style="padding-right :10px;">
+                <table class="table card-table table-hover table-vcenter  datatable-personal dt-perso" style="width:100%">
+                    <thead class="thead-light">
+                        <tr>
+                            <th hidden>iIdUsuario</th>
+                            <th style="width: 10%">Código</th>
+                            <th><div style="min-width: 80px">Cód. Personal</div></th>
+                            <th style="width: 30% !important">Personal</th>
+                            <th style="width: 10%">Fecha</th>
+                            <th style="width: 10%">Estado</th>
+                            <th style="width: 10%"><div style="min-width: 80px">Cant. Huellas</div></th>
+                            <th style="width: 10%"><div style="min-width: 80px">Nro Tarjeta</div></th>
+                            <th style="width: 10%"><div style="min-width: 80px">Sede</div></th>
+                            <th style="width: 10%">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="uploader" style="display:none">
+    <input id="fileInput" type="file" multiple>
+    <input type="submit" value="Upload file" />
+</form>
+
+<div class="modal fade" id="modal-pedido-print" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitlePer">REGISTRO DE PERSONAL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-x"></button>
+            </div>
+            <div class="modal-body row">
+                <!--codigo-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Código</label></div></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <input type="hidden" id="hddIdUsuario" />
+                        <input type="text" class="form-control" name="" id="txtCodigo" maxlength="9" onKeyPress="return checkIt(event)" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="visibility:hidden;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" class="custom-control-input" id="chkActivo" checked>
+                    <label class="custom-control-label" for="chkActivo">Activo</label>
+                </div>
+                <!--fecha registro-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Fecha de Registro</label></div></div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="" id="txtFeReg" disabled="disabled" />
+                    </div>
+                </div>
+                <!--hora registro-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Hora de Registro</label></div></div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="" id="txtHoReg" disabled="disabled" />
+                    </div>
+                </div>
+                <!--codigo personal-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label" >Código de personal</label></div></div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtCodPerso" maxlength="20"  onkeypress = "validarCodigoPersonal(event)" >
+                    </div>
+                </div>
+                <!--personal-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Personal</label></div></div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control " name="" id="txtNombres" maxlength="50"  onkeypress = "validarPersonal(event)">
+                    </div>
+                </div>
+                <!--nro tarjeta-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Nro de Tarjeta</label></div></div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="" id="txtNumTar" maxlength="10" onKeyPress="return checkIt(event)">
+                    </div>
+                </div>
+                <!--sede-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Sede</label></div></div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <select class="custom-select" id="txtSede">
+                            <option value="0">Seleccione</option>
+
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.Valor"> @item.Texto</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <!--huellas-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="form-group"><label class="form-label col-form-label">Cant. Huellas:</label></div></div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm col-2" name="" id="txtNumHuellas" value="0" disabled="disabled" style="display:inline">
+                            <input type="hidden" id="hddDedos" />
+                            <input type="hidden" id="hddHuellas" />
+                            <button type="button" class="btn btn-outline-primary btn-sm" id="enrolar-huella" data-active="mas">
+                                <i class="fe fe-plus mr-2"></i>Agregar Huella
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-gray" data-dismiss="modal" id="btn-close-" >Cancelar</button>  @*onclick="limpiarControles()"*@
+                <button type="button" class="btn btn-red" id="btn-save-pers">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('uploader').onsubmit = function () {
+        var formdata = new FormData(); //FormData object
+        var fileInput = document.getElementById('fileInput');
+        //Iterating through each files selected in fileInput
+        for (i = 0; i < fileInput.files.length; i++) {
+            //Appending each file to FormData object
+            formdata.append(fileInput.files[i].name, fileInput.files[i]);
+        }
+        //Creating an XMLHttpRequest and sending
+        var xhr = new XMLHttpRequest();
+        debugger;
+        xhr.open('POST', '/RegistroHuellas/Upload');
+        xhr.send(formdata);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr);
+            }
+        }
+        return false;
+    }
+</script>

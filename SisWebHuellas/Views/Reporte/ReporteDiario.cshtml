@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "ReporteDiario";
+}
+
+<!--<div class="row top_tiles">
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-open-status"></i></div>
+            <div class="count" id="id-cant-open">0</div>
+            <h3>Tickets Abiertos</h3>            
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-pending-status"></i></div>
+            <div class="count" id="id-cant-pending">0</div>
+            <h3>Tickets Pendientes</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-solved-status"></i></div>
+            <div class="count" id="id-cant-solved">0</div>
+            <h3>Tickets Solucionados</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-closed-status"></i></div>
+            <div class="count" id="id-cant-closed">0</div>
+            <h3>Tickets Cerrados</h3>
+        </div>
+    </div>
+</div>-->
+
+<div class="row top_tiles">
+    <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-open-status"></i></div>
+            <div class="count" id="id-cant-open">0</div><br />
+            <h3>Abiertos</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-pending-status"></i></div>
+            <div class="count" id="id-cant-pending">0</div><br />
+            <h3>Pendientes</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-solved-status"></i></div>
+            <div class="count" id="id-cant-solved">0</div><br />
+            <h3>Solucionados</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-ticket bg-closed-status"></i></div>
+            <div class="count" id="id-cant-closed">0</div><br />
+            <h3>Cerrados</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-line-chart"></i></div>
+            <div class="count" id="id-cant-sum-total">0</div><br />
+            <h3>Total Tickets</h3>
+        </div>
+    </div>
+   <!--  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12"></div> -->
+</div>
+
+
+<div class="">
+    <div class="page-title">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <h3>Reporte Tickets</h3> <p>Fecha: desde <label id="date-start-label" style="color:red"></label> hasta <label id="date-end-label" style="color:red"></label> <label id="resp-label-filter"></label><label id="area-label-filter"></label> </p>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            @Html.DropDownList("cboAreaReporte", (SelectList)ViewBag.AREA, "Filtrar por área..", new { @class = "form-control" })
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <input type="hidden" id="txt-fecha-inicio" />
+            <input type="hidden" id="txt-fecha-final" />
+            <select id="cboResponsable" class="form-control">
+                <option value="">Filtrar por Responsable..</option>
+            </select>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                <span>January 01, 2019 - January 28, 2019</span> <b class="caret"></b>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <!-- bar chart -->
+        <div class="col-md-6 col-sm-6 col-xs-12" id="container-bar-chart">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><small> <strong>Avance</strong> actual de tickets</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style=" height:300px;">
+                    <div id="report-barras-null"></div>
+                    <canvas id="report-barras"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- /bar charts -->
+        <!-- bar charts group -->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><small>Porcentaje de tickets por <strong>Estado</strong></small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="height:300px;">
+                    <div id="report-donut" style="width:100%; height:300px;"></div><!--echart_pie-->
+                </div>
+            </div>
+        </div>
+        <!-- /bar charts group -->
+
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        reportesDiarios();
+    };
+</script>
