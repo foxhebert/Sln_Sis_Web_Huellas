@@ -12,6 +12,7 @@ namespace Dominio.Entidades
         public string strNomCompleto { get; set; }
         public string strCorreo { get; set; }
         public string strNumDocNue { get; set; }
+
         //VALIDACION LOGUEO SERVER
         public string strOC { get; set; }
         public string strRUC { get; set; }
